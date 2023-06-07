@@ -1,0 +1,31 @@
+{
+  "name": "log-parser",
+  "version": "1.0.0",
+  "description": "A web-based Log Parser with an intuitive UI for uploading, parsing, filtering, visualizing, and exporting log files in various formats.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmashraf/log-parser.git"
+  },
+  "keywords": [
+    "npm",
+    "logparser",
+    "js",
+    "figma",
+    "ui"
+  ],
+  "author": "Mohammed Achraf LEBRAZI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lmashraf/log-parser/issues"
+  },
+  "homepage": "https://github.com/lmashraf/log-parser#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.12.0"
+  }
+}

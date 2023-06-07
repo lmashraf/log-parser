@@ -1,0 +1,26 @@
+/* container */
+button {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 18px 16px 24px;
+    gap: 16px;
+
+    width: 220px;
+    height: 56px;
+
+    /* Naples Yellow */
+    background: #FFE455;
+
+    /* Oxford Blue */
+    border: 1px solid #14213D;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
