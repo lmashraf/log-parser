@@ -1,7 +1,7 @@
 body {
     font-family: 'Lato', sans-serif;
     background-color: #0C1C32; /* Dark blue background */
-    color: #FFFFFF; /* Default white text */
+    color: #E5E5E5; /* Default white text */
     display: flex;
     flex-direction: column; /* Align items vertically */
     justify-content: flex-start; /* Align items to the top */
@@ -36,10 +36,10 @@ body {
 
 #container {
     text-align: center;
-    background-color: #FFFFFF; /* Container background color */
-    color: #1C1C32; /* Dark text */
+    background-color: #F0F0F0; /* Container background color */
+    color: #14213D; /* Dark text */
     padding: 40px;
-    border: 1px solid #000000; /* Black border */
+    border: 1px solid #14213D; /* Black border */
     width: 100%; /* Make width dynamic */
     max-width: 1000px; /* Set the max width */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +48,7 @@ body {
 
 p {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increase space between paragraph and form */
     color: #1C1C32; /* Paragraph text color */
     text-align: left; /* Align text to the left */
 }
@@ -60,45 +60,60 @@ p {
 .combined-container {
     background-color: #EFEFEF; /* Background color for combined container */
     padding: 20px;
-    border: 1px solid #000000; /* Black border */
-    margin-bottom: 20px;
+    border: 1px solid #14213D; /* Black border */
+    margin-bottom: 40px;
 }
 
-.load-from-container, .select-format-container {
-    margin-bottom: 20px;
+.section-label {
+    font-weight: bold;
+    color: #14213D; /* Label text color */
+    font-size: 14px;
+    display: block; /* Ensure the label occupies its own line */
+    margin-bottom: 10px; /* Add margin for spacing */
 }
 
 .radio-group {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 10px; /* Adjust the gap to reduce spacing */
+    flex-wrap: nowrap; /* Prevent wrapping */
 }
 
-label {
-    margin: 0 10px;
+.radio-group label {
+    margin: 0;
+    padding: 0 5px; /* Adjust padding for better alignment */
     display: flex;
     align-items: center;
-    color: #1C1C32; /* Label text color */
+    color: #14213D; /* Label text color */
+    font-size: 14px;
 }
 
 input[type="radio"] {
     margin-right: 5px;
+    accent-color: #0C1C32; /* Change the color of the radio button */
 }
 
 input[type="text"], select {
-    width: 100%;
+    width: 100%; /* Make width 100% of the container */
     padding: 10px;
-    border: 1px solid #CCCCCC; /* Border color */
-    border-radius: 0; /* Remove rounded edges */
+    border: 1px solid #7D8391; /* Border color */
     font-size: 14px;
+    margin-top: 20px; /* Add margin for spacing */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.load-from-container, .select-format-container {
+    /*background-color: #0C1C32;*/
+    height: 80px;
+    margin-top: 10px; /* Add margin for spacing between containers */
+    margin-bottom: 20px; /* Add margin for spacing between containers */
 }
 
 button {
-    background-color: #FEC606; /* Button background color */
-    color: #000000; /* Button text color */
+    background-color: #FFE455; /* Button background color */
+    color: #14213D; /* Button text color */
     padding: 10px 20px;
-    border: none;
-    border-radius: 0; /* Remove rounded edges */
+    border: 1px solid #14213D; /* Black border */
     cursor: pointer;
     font-size: 14px;
     display: block;
@@ -107,4 +122,46 @@ button {
 
 button:hover {
     background-color: #E0B400; /* Button hover color */
+}
+select {
+    width: 100%;
+    padding: 10px 15px; /* Adjust padding */
+    border: 1px solid #14213D; /* Border color */
+    font-size: 16px; /* Adjust font size */
+    margin-top: 20px; /* Add margin for spacing */
+    margin-bottom: 20px; /* Add margin for spacing */
+    background-color: #FFFFFF; /* Set background color to white */
+    color: #14213D; /* Text color */
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none; /* Remove default browser styling for WebKit */
+    -moz-appearance: none; /* Remove default browser styling for Mozilla */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2314213D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position the dropdown arrow */
+    background-size: 16px; /* Size of the dropdown arrow */
+    font-family: 'Lato', sans-serif; /* Use Lato font */
+    font-weight: bold; /* Make font bold */
+    position: relative; /* For positioning pseudo-elements */
+}
+
+/* Style the dropdown options */
+select option {
+    background-color: #FFFFFF; /* Set background color of options to white */
+    color: #000000; /* Set text color of options */
+    padding: 10px 15px; /* Add padding to options */
+    font-size: 16px; /* Ensure consistent font size */
+    font-family: 'Lato', sans-serif; /* Use Lato font */
+    font-weight: normal; /* Adjust font weight */
+}
+
+/* Custom styling for hovered options */
+select option:hover {
+    background-color: #B5E48C; /* Green background on hover */
+    color: #000000; /* Black text on hover */
+}
+
+/* Flip the dropdown arrow icon when the select is open */
+select:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2314213D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 14l5-5 5 5z"/></svg>'); /* Flipped dropdown arrow */
 }
