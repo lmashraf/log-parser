@@ -1,0 +1,74 @@
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.custom-select select {
+    display: none; /* Hide original dropdown */
+}
+
+.select-selected {
+    background-color: #FFFFFF;
+    border: 1px solid #14213D; /* Border color */
+    padding: 10px 15px; /* Adjust padding */
+    font-size: 16px; /* Adjust font size */
+    font-family: 'Lato', sans-serif; /* Use Lato font */
+    font-weight: bold; /* Make font bold */
+    color: #14213D; /* Text color */
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.select-selected:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: solid #14213D;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(45deg);
+}
+
+.select-selected.select-arrow-active:after {
+    transform: rotate(-135deg);
+}
+
+.select-items {
+    position: absolute;
+    background-color: #FFFFFF;
+    border: 1px solid #14213D; /* Border color */
+    z-index: 99;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none; /* Initially hide the dropdown items */
+}
+
+.select-items.select-hide {
+    display: none; /* Ensure dropdown items are hidden when not active */
+}
+
+.select-items div {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust font size */
+    font-family: 'Lato', sans-serif; /* Use Lato font */
+    font-weight: normal; /* Adjust font weight */
+    color: #000000; /* Text color */
+    background-color: #FFFFFF; /* Background color */
+}
+
+.select-items div:hover {
+    background-color: #B5E48C; /* Green background on hover */
+    color: #FFFFFF; /* White text on hover */
+}
+
+.select-items .selected {
+    background-color: #14213D; /* Blue background for selected item */
+    color: #FFFFFF; /* White text for selected item */
+}
