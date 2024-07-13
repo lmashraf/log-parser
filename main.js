@@ -5,6 +5,7 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 1400,
         height: 900,
+        autoHideMenuBar: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
@@ -14,7 +15,7 @@ function createWindow() {
 
     mainWindow.loadFile('index.html');
     // debug
-    // mainWindow.webContents.openDevTools(); 
+    mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);

@@ -2,8 +2,23 @@ import CustomDropdown from './components/custom-dropdown.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM fully loaded and parsed');
-    await populateDropdownOptions();
-    addRadioEventListeners();
+
+    // Check which page is loaded
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+        await populateDropdownOptions();
+        addRadioEventListeners();
+
+        // Add event listener for "Make the Magic" button
+        const parseButton = document.getElementById('parseButton');
+        if (parseButton) {
+            parseButton.addEventListener('click', handleMagicButtonClick);
+        }
+    }
+
+    // Display selected options if on parser.html
+    if (window.location.pathname.endsWith('parser.html')) {
+        displaySelectedOptions();
+    }
 });
 
 async function populateDropdownOptions() {
@@ -95,5 +110,42 @@ function handleRadioChange(event) {
         textarea.placeholder = 'Paste your text log here...';
         textarea.className = 'dynamic-textarea'; // Add class for consistent styling
         inputContainer.appendChild(textarea);
+    }
+}
+
+// Function to handle the "Make the Magic" button click
+function handleMagicButtonClick() {
+    const loadFrom = document.querySelector('input[name="loadFrom"]:checked').value;
+    const sourceInputElement = document.getElementById('sourceInput');
+    const sourceInput = sourceInputElement ? sourceInputElement.value : '';
+    const formatSelect = document.getElementById('formatSelect').value;
+
+    const selectedOptions = {
+        loadFrom,
+        sourceInput,
+        formatSelect
+    };
+
+    localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
+    window.location.href = 'parser.html';
+}
+
+// Function to display selected options on parser.html
+function displaySelectedOptions() {
+    const selectedOptionsContainer = document.getElementById('selectedOptionsContainer');
+    const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
+
+    if (selectedOptions) {
+        const loadFromText = document.createElement('p');
+        loadFromText.textContent = `Load From: ${selectedOptions.loadFrom}`;
+        selectedOptionsContainer.appendChild(loadFromText);
+
+        const sourceInputText = document.createElement('p');
+        sourceInputText.textContent = `Source Input: ${selectedOptions.sourceInput}`;
+        selectedOptionsContainer.appendChild(sourceInputText);
+
+        const formatSelectText = document.createElement('p');
+        formatSelectText.textContent = `Format: ${selectedOptions.formatSelect}`;
+        selectedOptionsContainer.appendChild(formatSelectText);
     }
 }
