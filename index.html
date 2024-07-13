@@ -11,13 +11,13 @@
         <h1>LOG PARSER</h1>
     </div>
     <div id="container">
-        <p class="instruction-text">Please select both the source and format of the log file from the options below to start parsing.</p>
+        <p>Please select both the source and format of the log file from the options below to start parsing.</p>
         <div class="form-container">
             <form>
                 <div class="combined-container">
                     <div class="load-from-container">
-                        <label>Load From</label>
                         <div class="radio-group">
+                            <label class="section-label">Load From</label>
                             <label>
                                 <input type="radio" name="loadFrom" value="url" checked> URL
                             </label>
@@ -31,9 +31,16 @@
                         <input type="text" id="sourceInput" placeholder="Insert your URL here...">
                     </div>
                     <div class="select-format-container">
-                        <label>Select Format</label>
+                        <label class="section-label">Select Format</label>
                         <select id="formatSelect">
                             <option value="custom">Custom Format (User-Defined)</option>
+                            <option value="apache">Apache Log Format</option>
+                            <option value="nginx">Nginx Log Format</option>
+                            <option value="json">JSON Log Format</option>
+                            <option value="xml">XML Log Format</option>
+                            <option value="csv">CSV Log Format</option>
+                            <option value="syslog">Syslog Format</option>
+                            <option value="common">Common Log Format</option>
                         </select>
                     </div>
                 </div>
