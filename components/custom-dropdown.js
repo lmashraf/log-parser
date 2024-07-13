@@ -1,49 +1,64 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const customSelects = document.querySelectorAll('.custom-select');
+class CustomDropdown {
+    constructor(element) {
+        this.element = element;
+        this.selectElement = this.element.querySelector('select');
+        this.selected = document.createElement('div');
+        this.selected.className = 'select-selected';
+        this.selected.innerHTML = this.selectElement.options[this.selectElement.selectedIndex].innerHTML;
+        this.items = document.createElement('div');
+        this.items.className = 'select-items select-hide';
+        this.init();
+    }
 
-    customSelects.forEach(select => {
-        const selectElement = select.querySelector('select');
-        const selected = document.createElement('div');
-        selected.className = 'select-selected';
-        selected.innerHTML = selectElement.options[selectElement.selectedIndex].innerHTML;
-        select.appendChild(selected);
+    init() {
+        this.createItems();
+        this.addEventListeners();
+        this.element.appendChild(this.selected);
+        this.element.appendChild(this.items);
+    }
 
-        const items = document.createElement('div');
-        items.className = 'select-items select-hide';
-
-        Array.from(selectElement.options).forEach(option => {
+    createItems() {
+        Array.from(this.selectElement.options).forEach(option => {
             const item = document.createElement('div');
             item.innerHTML = option.innerHTML;
-            item.addEventListener('click', function() {
-                selectElement.selectedIndex = Array.from(selectElement.options).indexOf(option);
-                selected.innerHTML = this.innerHTML;
-                closeAllSelect();
-                this.parentNode.classList.add('select-hide');
-                selected.classList.remove('select-arrow-active');
-            });
-            items.appendChild(item);
+            item.addEventListener('click', () => this.onItemClick(item, option));
+            this.items.appendChild(item);
         });
+    }
 
-        select.appendChild(items);
+    onItemClick(item, option) {
+        this.selectElement.selectedIndex = Array.from(this.selectElement.options).indexOf(option);
+        this.selected.innerHTML = item.innerHTML;
+        this.closeAllSelect();
+        this.items.classList.add('select-hide');
+        this.selected.classList.remove('select-arrow-active');
+    }
 
-        selected.addEventListener('click', function(e) {
+    addEventListeners() {
+        this.selected.addEventListener('click', (e) => {
             e.stopPropagation();
-            closeAllSelect();
-            items.classList.toggle('select-hide');
-            items.style.display = items.classList.contains('select-hide') ? 'none' : 'block';
-            selected.classList.toggle('select-arrow-active');
-
-            // Highlight the currently selected item
-            Array.from(items.children).forEach(item => {
-                item.classList.remove('selected');
-                if (item.innerHTML === selected.innerHTML) {
-                    item.classList.add('selected');
-                }
-            });
+            this.toggleItems();
         });
-    });
+        document.addEventListener('click', () => this.closeAllSelect());
+    }
 
-    function closeAllSelect(el) {
+    toggleItems() {
+        this.items.classList.toggle('select-hide');
+        this.items.style.display = this.items.classList.contains('select-hide') ? 'none' : 'block';
+        this.selected.classList.toggle('select-arrow-active');
+        this.highlightSelectedItem();
+    }
+
+    highlightSelectedItem() {
+        Array.from(this.items.children).forEach(item => {
+            item.classList.remove('selected');
+            if (item.innerHTML === this.selected.innerHTML) {
+                item.classList.add('selected');
+            }
+        });
+    }
+
+    closeAllSelect() {
         const items = document.querySelectorAll('.select-items');
         const selected = document.querySelectorAll('.select-selected');
         items.forEach(item => {
@@ -52,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         selected.forEach(sel => sel.classList.remove('select-arrow-active'));
     }
+}
 
-    document.addEventListener('click', closeAllSelect);
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.custom-select').forEach(select => new CustomDropdown(select));
 });

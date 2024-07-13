@@ -46,11 +46,10 @@
     box-sizing: border-box;
     max-height: 200px;
     overflow-y: auto;
-    display: none; /* Initially hide the dropdown items */
 }
 
 .select-items.select-hide {
-    display: none; /* Ensure dropdown items are hidden when not active */
+    display: none;
 }
 
 .select-items div {
