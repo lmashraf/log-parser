@@ -2,7 +2,11 @@
 <html>
 <head>
     <title>Log Parser</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="renderer.js"></script>
+    <script src="components/custom-dropdown.js"></script> <!-- Link to the external JS file -->
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <link rel="stylesheet" type="text/css" href="styles/custom-dropdown.css">
+    <link rel="stylesheet" type="text/css" href="styles/buttons.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -28,26 +32,32 @@
                                 <input type="radio" name="loadFrom" value="text"> Text Log
                             </label>
                         </div>
-                        <input type="text" id="sourceInput" placeholder="Insert your URL here...">
+                        <div class="input-container">
+                            <input type="text" id="sourceInput" placeholder="Insert your URL here...">
+                        </div>
                     </div>
                     <div class="select-format-container">
                         <label class="section-label">Select Format</label>
-                        <select id="formatSelect">
-                            <option value="custom">Custom Format (User-Defined)</option>
-                            <option value="apache">Apache Log Format</option>
-                            <option value="nginx">Nginx Log Format</option>
-                            <option value="json">JSON Log Format</option>
-                            <option value="xml">XML Log Format</option>
-                            <option value="csv">CSV Log Format</option>
-                            <option value="syslog">Syslog Format</option>
-                            <option value="common">Common Log Format</option>
-                        </select>
+                        <div class="custom-select">
+                            <select id="formatSelect">
+                                <option value="custom">Custom Format (User-Defined)</option>
+                                <option value="apache">Apache Log Format</option>
+                                <option value="nginx">Nginx Log Format</option>
+                                <option value="json">JSON Log Format</option>
+                                <option value="xml">XML Log Format</option>
+                                <option value="csv">CSV Log Format</option>
+                                <option value="syslog">Syslog Format</option>
+                                <option value="common">Common Log Format</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
-        <button type="button" id="parseButton">MAKE THE MAGIC</button>
+        <button type="button" class="magic-button" id="parseButton">
+            MAKE THE MAGIC
+            <span class="arrow-icon"></span>
+        </button>
     </div>
-    <script src="renderer.js"></script>
 </body>
 </html>
