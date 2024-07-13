@@ -1,20 +1,20 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-
-require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-})
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 1000,
+        width: 1400,
+        height: 900,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
     });
 
     mainWindow.loadFile('index.html');
+
+    // Create and set an empty menu
+    const menu = Menu.buildFromTemplate([]);
+    Menu.setApplicationMenu(menu);
 }
 
 app.whenReady().then(() => {
