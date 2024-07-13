@@ -1,3 +1,4 @@
+/* Body styles */
 body {
     font-family: 'Lato', sans-serif;
     background-color: #0C1C32; /* Dark blue background */
@@ -11,6 +12,7 @@ body {
     overflow: hidden; /* Prevent scrolling */
 }
 
+/* Header styles */
 .header-container {
     background-color: #0C1C32;
     width: 100%; /* Full width */
@@ -34,6 +36,7 @@ body {
     display: inline-block;
 }
 
+/* Container styles */
 #container {
     text-align: center;
     background-color: #F0F0F0; /* Container background color */
@@ -46,6 +49,7 @@ body {
     margin-top: 20px; /* Space between header and container */
 }
 
+/* Paragraph styles */
 p {
     font-size: 16px;
     margin-bottom: 40px; /* Increase space between paragraph and form */
@@ -53,10 +57,12 @@ p {
     text-align: left; /* Align text to the left */
 }
 
+/* Form container styles */
 .form-container {
     text-align: left;
 }
 
+/* Combined container styles */
 .combined-container {
     background-color: #EFEFEF; /* Background color for combined container */
     padding: 20px;
@@ -64,6 +70,7 @@ p {
     margin-bottom: 40px;
 }
 
+/* Section label styles */
 .section-label {
     font-weight: bold;
     color: #14213D; /* Label text color */
@@ -72,6 +79,7 @@ p {
     margin-bottom: 10px; /* Add margin for spacing */
 }
 
+/* Radio group styles */
 .radio-group {
     display: flex;
     align-items: center;
@@ -93,26 +101,27 @@ input[type="radio"] {
     accent-color: #0C1C32; /* Change the color of the radio button */
 }
 
-.load-from-container{
-        /*background-color: #0C1C32;*/
-        height: 80px;
-        margin-top: 10px; /* Add margin for spacing between containers */
-        margin-bottom: 10px; /* Add margin for spacing between containers */
+/* Container styles */
+.load-from-container {
+    height: 80px;
+    margin-top: 10px; /* Add margin for spacing between containers */
+    margin-bottom: 10px; /* Add margin for spacing between containers */
 }
 
 .select-format-container {
-    /*background-color: #0C1C32;*/
     height: 80px;
     margin-top: 80px; /* Add margin for spacing between containers */
     margin-bottom: 10px; /* Add margin for spacing between containers */
 }
 
+/* Input container styles */
 .input-container {
     position: relative;
     width: 100%;
     margin-bottom: 64px; /* Add spacing below the input field */
 }
 
+/* Input text styles */
 input[type="text"] {
     width: 100%; /* Make width 100% of the container */
     padding: 15px; /* Padding for height */
@@ -133,6 +142,7 @@ input[type="text"]::placeholder {
     font-size: 16px; /* Font size */
 }
 
+/* Input container after styles */
 .input-container::after {
     content: '';
     display: block;
@@ -142,4 +152,55 @@ input[type="text"]::placeholder {
     position: absolute;
     bottom: 10px; /* Position the underline */
     left: 15px;
+}
+
+/* Dynamic input and textarea styles */
+.dynamic-input, .dynamic-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid #14213D; /* Match the border color */
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.dynamic-textarea {
+    resize: vertical;
+    min-height: 100px; /* Minimum height for the textarea */
+}
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #14213D;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: #14213D; /* Text color */
+    background-color: #FFFFFF; /* Background color */
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.file-input-label .browse-button {
+    background-color: #14213D; /* Blue background */
+    color: #FFFFFF; /* White text */
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
+.file-input-label .browse-button:hover {
+    background-color: #14213D; /* Darker blue on hover */
+}
+
+.file-input-label input[type="file"] {
+    display: none;
 }
