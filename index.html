@@ -2,8 +2,7 @@
 <html>
 <head>
     <title>Log Parser</title>
-    <script src="renderer.js"></script>
-    <script type="module" src="components/custom-dropdown.js"></script>
+    <script type="module" src="renderer.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/index.css">
     <link rel="stylesheet" type="text/css" href="styles/custom-dropdown.css">
     <link rel="stylesheet" type="text/css" href="styles/buttons.css">
@@ -11,7 +10,7 @@
 </head>
 <body>
     <div class="header-container">
-        <img src="icon.png" alt="Icon">
+        <img src="assets/logo.png" alt="Icon">
         <h1>LOG PARSER</h1>
     </div>
     <div id="container">
@@ -32,23 +31,14 @@
                                 <input type="radio" name="loadFrom" value="text"> Text Log
                             </label>
                         </div>
-                        <div class="input-container">
+                        <div class="input-container" id="inputContainer">
                             <input type="text" id="sourceInput" placeholder="Insert your URL here...">
                         </div>
                     </div>
                     <div class="select-format-container">
                         <label class="section-label">Select Format</label>
                         <div class="custom-select">
-                            <select id="formatSelect">
-                                <option value="custom">Custom Format (User-Defined)</option>
-                                <option value="apache">Apache Log Format</option>
-                                <option value="nginx">Nginx Log Format</option>
-                                <option value="json">JSON Log Format</option>
-                                <option value="xml">XML Log Format</option>
-                                <option value="csv">CSV Log Format</option>
-                                <option value="syslog">Syslog Format</option>
-                                <option value="common">Common Log Format</option>
-                            </select>
+                            <select id="formatSelect"></select> <!-- Initially empty -->
                         </div>
                     </div>
                 </div>
