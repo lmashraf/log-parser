@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Parser</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #container { text-align: center; margin-top: 100px; }
+        input, select, button { margin: 10px; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Log Parser</h1>
+        <p>Please select both the source and format of the log file from the options below to start parsing.</p>
+        <form>
+            <label>
+                <input type="radio" name="loadFrom" value="url" checked> URL
+            </label>
+            <label>
+                <input type="radio" name="loadFrom" value="file"> File
+            </label>
+            <label>
+                <input type="radio" name="loadFrom" value="text"> Text Log
+            </label>
+            <br>
+            <input type="text" id="sourceInput" placeholder="Insert your URL here...">
+            <br>
+            <select id="formatSelect">
+                <option value="custom">Custom Format (User-Defined)</option>
+            </select>
+            <br>
+            <button type="button" id="parseButton">Make the Magic</button>
+        </form>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>
