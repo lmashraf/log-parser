@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Display selected options if on parser.html
     if (window.location.pathname.endsWith('parser.html')) {
         displaySelectedOptions();
+
+        // Add event listener for "LOAD AFRESH" button
+        const loadAfreshButton = document.getElementById('loadAfreshButton');
+        if (loadAfreshButton) {
+            loadAfreshButton.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        }
     }
 });
 
@@ -115,15 +123,14 @@ function handleRadioChange(event) {
 
 // Function to handle the "Make the Magic" button click
 function handleMagicButtonClick() {
-    const loadFrom = document.querySelector('input[name="loadFrom"]:checked').value;
     const sourceInputElement = document.getElementById('sourceInput');
     const sourceInput = sourceInputElement ? sourceInputElement.value : '';
-    const formatSelect = document.getElementById('formatSelect').value;
+    const formatSelectElement = document.getElementById('formatSelect');
+    const formatSelectLabel = formatSelectElement.options[formatSelectElement.selectedIndex].text;
 
     const selectedOptions = {
-        loadFrom,
         sourceInput,
-        formatSelect
+        formatSelectLabel
     };
 
     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
@@ -132,20 +139,10 @@ function handleMagicButtonClick() {
 
 // Function to display selected options on parser.html
 function displaySelectedOptions() {
-    const selectedOptionsContainer = document.getElementById('selectedOptionsContainer');
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
 
     if (selectedOptions) {
-        const loadFromText = document.createElement('p');
-        loadFromText.textContent = `Load From: ${selectedOptions.loadFrom}`;
-        selectedOptionsContainer.appendChild(loadFromText);
-
-        const sourceInputText = document.createElement('p');
-        sourceInputText.textContent = `Source Input: ${selectedOptions.sourceInput}`;
-        selectedOptionsContainer.appendChild(sourceInputText);
-
-        const formatSelectText = document.createElement('p');
-        formatSelectText.textContent = `Format: ${selectedOptions.formatSelect}`;
-        selectedOptionsContainer.appendChild(formatSelectText);
+        document.getElementById('dateSource').value = selectedOptions.sourceInput;
+        document.getElementById('sourceFormat').value = selectedOptions.formatSelectLabel;
     }
 }

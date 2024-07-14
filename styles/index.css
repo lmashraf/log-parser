@@ -46,7 +46,7 @@ body {
     width: 100%; /* Make width dynamic */
     max-width: 1000px; /* Set the max width */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Space between header and container */
+    margin-top: 30px; /* Space between header and container */
 }
 
 /* Paragraph styles */

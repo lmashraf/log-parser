@@ -1,6 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
+// Electron Reload
+require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+});
+
 function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 1400,
@@ -16,6 +21,7 @@ function createWindow() {
     mainWindow.loadFile('index.html');
     // debug
     mainWindow.webContents.openDevTools();
+
 }
 
 app.whenReady().then(createWindow);
