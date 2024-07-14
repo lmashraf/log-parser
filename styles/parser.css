@@ -43,7 +43,7 @@ body {
     background-color: #FAFAFA; /* Container background color */
     color: #14213D;
     padding: 40px;
-    border: 1px solid #14213D;
+    border: 1px solid #7D8391;
     width: 100%;
     max-width: 1200px; /* Set to same width as header */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@ body {
 .combined-container {
     background-color: #F0F0F0; /* Light grey background */
     padding: 20px;
-    border: 1px solid #14213D;
+    border: 1px solid #D0D0D0;
     margin-bottom: 20px;
 }
 
@@ -107,7 +107,7 @@ h2 {
     justify-content: center; /* Ensure the content is centered */
     background-color: #FFFFFF; /* Ensure background is white */
     padding: 20px; /* Add padding to match design */
-    border: 1px solid #7D8391;
+    border: 1px solid #F0F0F0;
     box-sizing: border-box;
 }
 
@@ -118,28 +118,7 @@ h2 {
 
 .legend {
     display: flex;
-    justify-content: space-between;
     width: 100%;
-    margin-top: 10px;
-}
-
-.legend-item {
-    font-size: 14px;
-    color: #14213D;
-    font-weight: bold;
-}
-
-.log-summary {
-    background-color: #FFFFFF;
-    border: 1px solid #7D8391;
-    padding: 20px;
-    font-size: 16px;
-    color: #14213D;
-    text-align: left;
-    width: 25%; /* Adjusted width to be smaller */
-    height: 100%; /* Set height to match the content */
-    box-sizing: border-box;
-    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .log-table table {

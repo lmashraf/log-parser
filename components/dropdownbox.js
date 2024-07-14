@@ -71,9 +71,9 @@ class DropdownBox {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.custom-select').forEach(select => {
-        if (!select.classList.contains('initialized')) {
+        if (!select.classList.contains('initialised')) {
             new DropdownBox(select);
-            select.classList.add('initialized');
+            select.classList.add('initialised');
         }
     });
 });

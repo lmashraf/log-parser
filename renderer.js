@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Display selected options if on parser.html
     if (window.location.pathname.endsWith('parser.html')) {
-        displaySelectedOptions();
+        forwardSelectedOptions();
 
         // Add event listener for "LOAD AFRESH" button
         const loadAfreshButton = document.getElementById('loadAfreshButton');
@@ -48,18 +48,18 @@ async function populateDropdownOptions() {
         });
 
         console.log('Dropdown Box options populated');
-        initializeDropdownBox(); // Initialize only after options are populated
+        initialiseDropdownBox(); // Initialize only after options are populated
     } catch (error) {
         console.error('Error fetching dropdown options:', error);
     }
 }
 
-function initializeDropdownBox() {
+function initialiseDropdownBox() {
     document.querySelectorAll('.custom-select').forEach(select => {
-        if (!select.classList.contains('initialized')) {
+        if (!select.classList.contains('initialised')) {
             new DropdownBox(select);
-            select.classList.add('initialized');
-            console.log('Dropdown Box initialized for:', select);
+            select.classList.add('initialised');
+            console.log('Dropdown Box initialised for:', select);
         }
     });
 }
@@ -138,7 +138,7 @@ function handleMagicButtonClick() {
 }
 
 // Function to display selected options on parser.html
-function displaySelectedOptions() {
+function forwardSelectedOptions() {
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
 
     if (selectedOptions) {

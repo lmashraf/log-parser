@@ -3,10 +3,15 @@
 <head>
     <title>Log Parser - Results</title>
     <script src="renderer.js" type="module"></script>
-    <script src="tooltip.js" type="module"></script> <!-- Include tooltip.js -->
+    <!-- Global Styling-->
     <link rel="stylesheet" type="text/css" href="styles/parser.css">
     <link rel="stylesheet" type="text/css" href="styles/buttons.css">
-    <link rel="stylesheet" type="text/css" href="styles/tooltip.css"> <!-- Include tooltip.css -->
+    <!-- Components -->
+    <script src="components/tooltip.js" type="module"></script> <!-- Include tooltip.js -->
+    <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
+    <script src="components/tag.js" type="module"></script> <!-- Include tooltip.js -->
+    <link rel="stylesheet" type="text/css" href="styles/tag.css"> <!-- Include tooltip.css -->
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,7 +29,7 @@
         <h2>Input Summary</h2>
         <div class="combined-container">
             <div class="summary-field">
-                <label>Date Source</label>
+                <label>Data Source</label>
             </div>
             <input type="text" id="dateSource" class="summary-value" disabled>
             <div class="summary-field">
@@ -38,33 +43,33 @@
                 <div class="chart-container">
                     <canvas id="logChart"></canvas>
                     <div class="legend">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #FF0000;"></div>
-                            <span class="legend-label">ALERT</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #FFE455;"></div>
+                            <span class="tag-label">ALERT</span>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #FFA500;"></div>
-                            <span class="legend-label">ERROR</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #FC1149;"></div>
+                            <span class="tag-label">ERROR</span>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #00FF00;"></div>
-                            <span class="legend-label">INFO</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #0ED0FF;"></div>
+                            <span class="tag-label">INFO</span>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #0000FF;"></div>
-                            <span class="legend-label">NOTICE</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #0ED096;"></div>
+                            <span class="tag-label">NOTICE</span>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #800080;"></div>
-                            <span class="legend-label">CRIT</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #495267;"></div>
+                            <span class="tag-label">CRIT</span>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #FFFF00;"></div>
-                            <span class="legend-label">DEBUG</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #87DA76;"></div>
+                            <span class="tag-label">DEBUG</span>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #808080;"></div>
-                            <span class="legend-label">WARN</span>
+                        <div class="tag-item">
+                            <div class="tag-color" style="background-color: #FCA311;"></div>
+                            <span class="tag-label">WARN</span>
                         </div>
                     </div>
                 </div>

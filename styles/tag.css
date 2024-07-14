@@ -1,0 +1,25 @@
+.tag-item {
+    display: flex;
+    flex-direction: row; /* Align items vertically */
+    align-items: center;
+    width: 100px;
+    height: 30px;
+    margin-right: 20px;
+    border: 1px solid #7D8391; /* Black border */
+    border-radius: 20px;
+}
+
+.tag-color {
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.tag-label {
+    font-family: 'Lato', sans-serif; /* Use Lato font */
+    font-size: 14px;
+    color: #14213D;
+    font-weight: 200;
+}
