@@ -13,6 +13,13 @@ Log Parser is an application that allows users to easily upload, parse, filter, 
 
 ## Getting Started
 
+### Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+
+### Installation
+
 To get started with the Log Parser, follow these steps:
 
 1. **Clone the repository**:
