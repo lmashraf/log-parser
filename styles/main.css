@@ -128,7 +128,7 @@ input[type="text"] {
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
     color: #14213D;
-    background-color: #FFFFFF;
+    background-color: #FAFAFA;
     outline: none;
     height: 64px;
     margin-top: 20px;
@@ -178,7 +178,7 @@ input[type="text"]::placeholder {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     color: #14213D;
-    background-color: #FFFFFF;
+    background-color: #FAFAFA;
     box-sizing: border-box;
     margin-top: 20px;
     width: 100%;
@@ -186,7 +186,7 @@ input[type="text"]::placeholder {
 
 .file-input-label .browse-button {
     background-color: #14213D;
-    color: #FFFFFF;
+    color: #FAFAFA;
     padding: 10px;
     cursor: pointer;
     border: none;

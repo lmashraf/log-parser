@@ -9,13 +9,13 @@
 }
 
 .select-selected {
-    background-color: #FFFFFF;
-    border: 1px solid #14213D; /* Border color */
-    padding: 10px 15px; /* Adjust padding */
-    font-size: 16px; /* Adjust font size */
-    font-family: 'Lato', sans-serif; /* Use Lato font */
-    font-weight: bold; /* Make font bold */
-    color: #14213D; /* Text color */
+    background-color: #FAFAFA;
+    border: 1px solid #14213D;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: #14213D;
     position: relative;
     cursor: pointer;
     user-select: none;
@@ -39,8 +39,8 @@
 
 .select-items {
     position: absolute;
-    background-color: #FFFFFF;
-    border: 1px solid #14213D; /* Border color */
+    background-color: #FAFAFA;
+    border: 1px solid #14213D;
     z-index: 99;
     width: 100%;
     box-sizing: border-box;
@@ -55,19 +55,19 @@
 .select-items div {
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 16px; /* Adjust font size */
-    font-family: 'Lato', sans-serif; /* Use Lato font */
-    font-weight: normal; /* Adjust font weight */
-    color: #000000; /* Text color */
-    background-color: #FFFFFF; /* Background color */
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    color: #000000;
+    background-color: #FAFAFA;
 }
 
 .select-items div:hover {
-    background-color: #B5E48C; /* Green background on hover */
-    color: #FFFFFF; /* White text on hover */
+    background-color: #B5E48C;
+    color: #FAFAFA;
 }
 
 .select-items .selected {
-    background-color: #14213D; /* Blue background for selected item */
-    color: #FFFFFF; /* White text for selected item */
+    background-color: #14213D;
+    color: #FAFAFA;
 }

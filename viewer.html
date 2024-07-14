@@ -9,8 +9,8 @@
     <!-- Components -->
     <script src="components/tooltip.js" type="module"></script> <!-- Include tooltip.js -->
     <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
-    <script src="components/tag.js" type="module"></script> <!-- Include tooltip.js -->
-    <link rel="stylesheet" type="text/css" href="styles/tag.css"> <!-- Include tooltip.css -->
+    <script src="components/tag.js" type="module"></script> <!-- Include tag.js -->
+    <link rel="stylesheet" type="text/css" href="styles/tag.css"> <!-- Include tag.css -->
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -39,54 +39,56 @@
         </div>
         <h2>Content Breakdown</h2>
         <div class="combined-container">
-            <div class="content-layout">
-                <div class="chart-container">
-                    <canvas id="logChart"></canvas>
-                    <div class="legend">
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #FFE455;"></div>
+            <div class="log-analysis-container">
+                <div class="chart-section">
+                    <div class="chart-container">
+                        <canvas id="logChart"></canvas>
+                    </div>
+                    <div class="legend-container">
+                        <div class="tag-item" data-tag="alert">
+                            <img src="assets/tag-alert.svg" alt="ALERT" class="tag-icon">
                             <span class="tag-label">ALERT</span>
                         </div>
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #FC1149;"></div>
+                        <div class="tag-item" data-tag="error">
+                            <img src="assets/tag-error.svg" alt="ERROR" class="tag-icon">
                             <span class="tag-label">ERROR</span>
                         </div>
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #0ED0FF;"></div>
+                        <div class="tag-item" data-tag="info">
+                            <img src="assets/tag-info.svg" alt="INFO" class="tag-icon">
                             <span class="tag-label">INFO</span>
                         </div>
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #0ED096;"></div>
+                        <div class="tag-item" data-tag="notice">
+                            <img src="assets/tag-notice.svg" alt="NOTICE" class="tag-icon">
                             <span class="tag-label">NOTICE</span>
                         </div>
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #495267;"></div>
+                        <div class="tag-item" data-tag="crit">
+                            <img src="assets/tag-crit.svg" alt="CRIT" class="tag-icon">
                             <span class="tag-label">CRIT</span>
                         </div>
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #87DA76;"></div>
+                        <div class="tag-item" data-tag="debug">
+                            <img src="assets/tag-debug.svg" alt="DEBUG" class="tag-icon">
                             <span class="tag-label">DEBUG</span>
                         </div>
-                        <div class="tag-item">
-                            <div class="tag-color" style="background-color: #FCA311;"></div>
+                        <div class="tag-item" data-tag="warn">
+                            <img src="assets/tag-warn.svg" alt="WARN" class="tag-icon">
                             <span class="tag-label">WARN</span>
                         </div>
                     </div>
                 </div>
                 <div class="tooltip" id="logSummary">
-                    <h3>File Log Summary</h3>
-                    <p>Logs in file: <span id="logsInFile">100000</span></p>
-                    <p>Logs from selected tags: <span id="logsFromSelectedTags">15000</span></p>
-                    <p id="logLabelContainer">
-                        <span id="logLabel"></span>
-                    </p>
-                    <p id="logOccurrencesContainer">
-                        Occurrences: <span id="logOccurrences"></span>
-                    </p>
-                    <p id="logCountContainer">
-                        Count: <span id="logCount"></span>
-                    </p>
-                    <p>Hover over a bar for detailed statistics.</p>
+                    <div class="section line">
+                        <h3>File Log Summary</h3>
+                    </div>
+                    <div class="section line">
+                        <p>Logs in file: <span id="logsInFile">100000</span></p>
+                        <p>Logs from selected tags: <span id="logsFromSelectedTags">15000</span></p>
+                    </div>
+                    <div id="hoverDetails">
+                        <div id="logIconContainer"></div>
+                        <p id="logOccurrencesContainer">Occurrences: <span id="logOccurrences"></span></p>
+                        <p id="logCountContainer">Count: <span id="logCount"></span></p>
+                    </div>
+                    <p id="defaultMessage">Hover over a bar for detailed statistics.</p>
                 </div>
             </div>
             <div class="log-table">
@@ -103,11 +105,11 @@
                     </tbody>
                 </table>
             </div>
+            <button class="magic-button" id="dumpContentButton">
+                DUMP CONTENT
+                <span class="arrow-icon"></span>
+            </button>
         </div>
-        <button class="magic-button" id="dumpContentButton">
-            DUMP CONTENT
-            <span class="arrow-icon"></span>
-        </button>
     </div>
 </body>
 </html>

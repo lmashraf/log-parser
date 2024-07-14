@@ -1,35 +1,58 @@
 class Tooltip {
     constructor(element) {
         this.element = element;
+        // Log File Summary
         this.logsInFile = this.element.querySelector('#logsInFile');
         this.logsFromSelectedTags = this.element.querySelector('#logsFromSelectedTags');
-        this.label = this.element.querySelector('#logLabel');
+        // Selected Tag Summary
         this.occurrences = this.element.querySelector('#logOccurrences');
         this.count = this.element.querySelector('#logCount');
-        this.labelContainer = this.element.querySelector('#logLabelContainer');
         this.occurrencesContainer = this.element.querySelector('#logOccurrencesContainer');
         this.countContainer = this.element.querySelector('#logCountContainer');
+        this.iconContainer = this.element.querySelector('#logIconContainer');
+        this.defaultMessage = this.element.querySelector('#defaultMessage');
+        // Optional Tip
+        this.hoverDetails = this.element.querySelector('#hoverDetails');
     }
 
     updateTooltip(logData) {
         this.logsInFile.textContent = logData.logsInFile;
         this.logsFromSelectedTags.textContent = logData.logsFromSelectedTags;
 
-        if (logData.label) {
-            this.label.textContent = logData.label;
-            this.labelContainer.style.display = 'block';
+        if (logData.tagElement) {
+            this.iconContainer.innerHTML = ''; // Clear existing content
+            this.iconContainer.appendChild(logData.tagElement); // Insert the cloned tag element
+            this.iconContainer.style.display = 'block';
         } else {
-            this.labelContainer.style.display = 'none';
+            this.iconContainer.style.display = 'none';
         }
 
         if (logData.occurrences !== undefined && logData.count !== undefined) {
-            this.occurrences.textContent = `${logData.occurrences}%`;
+            this.occurrences.textContent = `${logData.occurrences.toFixed(2)}%`;
             this.count.textContent = logData.count;
             this.occurrencesContainer.style.display = 'block';
             this.countContainer.style.display = 'block';
         } else {
             this.occurrencesContainer.style.display = 'none';
             this.countContainer.style.display = 'none';
+        }
+
+        // Show hover details and hide default message
+        this.hoverDetails.style.display = 'block';
+        if (this.defaultMessage) {
+            this.defaultMessage.style.display = 'none';
+        }
+    }
+
+    hideTooltip() {
+        this.iconContainer.style.display = 'none';
+        this.occurrencesContainer.style.display = 'none';
+        this.countContainer.style.display = 'none';
+
+        // Hide hover details and show default message
+        this.hoverDetails.style.display = 'none';
+        if (this.defaultMessage) {
+            this.defaultMessage.style.display = 'block';
         }
     }
 }
@@ -39,16 +62,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tooltipElement) {
         const tooltip = new Tooltip(tooltipElement);
 
-        // Example usage: Update tooltip on hover/click event
-        document.getElementById('logChart').addEventListener('mouseover', (event) => {
-            const logData = {
-                logsInFile: 100000,
-                logsFromSelectedTags: 15000,
-                label: 'NOTICE',
-                occurrences: 75.5,
-                count: 100
-            };
-            tooltip.updateTooltip(logData);
+        const tagItems = document.querySelectorAll('.tag-item');
+        tagItems.forEach(tagItem => {
+            tagItem.addEventListener('mouseenter', (event) => {
+                const clonedTag = tagItem.cloneNode(true);
+                clonedTag.classList.remove('disabled');
+                clonedTag.style.width = ''; // Reset width
+                clonedTag.style.height = ''; // Reset height
+                const logData = {
+                    logsInFile: 100000,
+                    logsFromSelectedTags: 15000,
+                    tagElement: clonedTag,
+                    occurrences: Math.random() * 100, // TODO: Replace with actual
+                    count: Math.floor(Math.random() * 100) // TODO: Replace with actual
+                };
+                tooltip.updateTooltip(logData);
+            });
+
+            tagItem.addEventListener('mouseleave', () => {
+                tooltip.hideTooltip();
+            });
         });
     }
 });
