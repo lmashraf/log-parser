@@ -2,28 +2,38 @@
     background-color: #FFE455; /* Button background color */
     color: #14213D; /* Button text color */
     padding: 10px 20px;
-    border: 1px solid #14213D; /* Black border */
+    border: 1px solid #14213D; /* Border color */
     cursor: pointer;
     font-size: 14px;
-    display: flex; /* Use flex to align text and icon */
+    display: flex; /* Align text and icon */
     align-items: center;
     justify-content: center;
-    font-family: 'Lato', sans-serif; /* Use Lato font */
-    font-weight: bold; /* Make font bold */
-    margin-left: auto; /* Align the button to the right */
+    font-family: 'Lato', sans-serif; /* Font family */
+    font-weight: bold; /* Bold text */
+    margin-left: auto; /* Align to the right */
 }
 
 .magic-button:hover {
-    background-color: #E0B400; /* Button hover color */
+    background-color: #D7FCD0; /* Hover background color */
+}
+
+.magic-button:active {
+    background-color: #14213D; /* Active background color */
+    color: #FAFAFA; /* Active text color for better visibility */
 }
 
 /* Style for the arrow icon */
 .magic-button .arrow-icon {
-    margin-left: 10px; /* Add space between text and icon */
+    margin-left: 10px; /* Space between text and icon */
     display: inline-block;
-    width: 16px; /* Adjust size to match design */
-    height: 16px;
+    width: 16px; /* Icon width */
+    height: 16px; /* Icon height */
     background-image: url('data:image/svg+xml;utf8,<svg fill="%2314213D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21l-1.41-1.41L17.17 13H3v-2h14.17l-6.58-6.59L12 3l9 9z"/></svg>');
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+/* Change the color of the arrow icon on active state */
+.magic-button:active .arrow-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23FAFAFA" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21l-1.41-1.41L17.17 13H3v-2h14.17l-6.58-6.59L12 3l9 9z"/></svg>');
 }
