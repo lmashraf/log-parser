@@ -1,25 +1,28 @@
 .tag-item {
     display: flex;
-    flex-direction: row; /* Align items vertically */
     align-items: center;
-    width: 100px;
-    height: 30px;
-    margin-right: 20px;
-    border: 1px solid #7D8391; /* Black border */
+    padding: 5px 10px;
+    border: 1px solid #7D8391;
     border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+    cursor: pointer;
 }
 
-.tag-color {
-    width: 10px;
-    height: 10px;
-    margin-right: 15px;
-    border-radius: 50%;
-    display: inline-block;
+.tag-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
 }
 
 .tag-label {
-    font-family: 'Lato', sans-serif; /* Use Lato font */
+    font-family: 'Lato', sans-serif;
     font-size: 14px;
     color: #14213D;
-    font-weight: 200;
+    font-weight: bold;
+}
+
+.tag-item.disabled {
+    opacity: 0.5;
 }
