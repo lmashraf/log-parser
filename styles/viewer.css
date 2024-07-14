@@ -80,7 +80,7 @@ h2 {
 .summary-value {
     background-color: #E5E5E5; /* Disabled textbox color */
     border: 1px solid #7D8391;
-    padding: 10px 15px; /* Match padding from index.css */
+    padding: 10px 15px; /* Match padding from main.css */
     font-size: 14px;
     font-weight: 400;
     color: #7D8391;
