@@ -1,7 +1,7 @@
 import { populateDropdownOptions } from './renderer/dropdown-options.js';
 import { addRadioEventListeners } from './renderer/radio-events.js';
 import { addMagicButtonEventListener, addReloadButtonEventListener } from './renderer/button-events.js';
-import { forwardSelectedOptions } from './renderer/navigation.js';
+import { forwardSelectedOptions, forwardParsedLogs } from './renderer/process-data.js';
 import './components/tag.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Display selected options if on viewer.html
         if (window.location.pathname.endsWith('viewer.html')) {
             forwardSelectedOptions();
+            forwardParsedLogs();
             addReloadButtonEventListener();
         }
     } catch (error) {

@@ -3,7 +3,7 @@ import parseLog from '../parsers/log-parser.js';
 export function handleMagicButtonClick() {
     const sourceInputElement = document.getElementById('sourceInput');
     const formatSelectElement = document.getElementById('formatSelect');
-    const formatSelectLabel = formatSelectElement.options[formatSelectElement.selectedIndex].value; // Use value instead of text
+    const formatSelectLabel = formatSelectElement.options[formatSelectElement.selectedIndex].value;
     const loadFrom = document.querySelector('input[name="loadFrom"]:checked').value;
 
     if (loadFrom === 'url') {
@@ -11,8 +11,10 @@ export function handleMagicButtonClick() {
             .then(response => response.text())
             .then(data => {
                 processLogData(data, formatSelectLabel, sourceInputElement.value);
-                window.electron.send('resize-window', { width: 1400, height: screen.height }); // Resize window here
-                window.location.href = 'viewer.html'; // Redirect to viewer.html
+                setTimeout(() => {
+                    window.electron.send('resize-window', { width: 1400, height: screen.height });
+                    window.location.href = 'viewer.html';
+                }, 100); // Ensure data is set before navigation
             })
             .catch(error => {
                 console.error('Error fetching log file:', error);
@@ -25,8 +27,10 @@ export function handleMagicButtonClick() {
             reader.onload = (event) => {
                 const data = event.target.result;
                 processLogData(data, formatSelectLabel, file.name);
-                window.electron.send('resize-window', { width: 1400, height: screen.height }); // Resize window here
-                window.location.href = 'viewer.html'; // Redirect to viewer.html
+                setTimeout(() => {
+                    window.electron.send('resize-window', { width: 1400, height: screen.height });
+                    window.location.href = 'viewer.html';
+                }, 100); // Ensure data is set before navigation
             };
             reader.onerror = (error) => {
                 console.error('Error reading file:', error);
@@ -39,8 +43,10 @@ export function handleMagicButtonClick() {
     } else if (loadFrom === 'text') {
         const logData = sourceInputElement.value;
         processLogData(logData, formatSelectLabel, 'Text Log');
-        window.electron.send('resize-window', { width: 1400, height: screen.height }); // Resize window here
-        window.location.href = 'viewer.html'; // Redirect to viewer.html
+        setTimeout(() => {
+            window.electron.send('resize-window', { width: 1400, height: screen.height });
+            window.location.href = 'viewer.html';
+        }, 100); // Ensure data is set before navigation
     }
 }
 
@@ -56,9 +62,8 @@ function processLogData(data, format, source) {
     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
     localStorage.setItem('parsedLogs', JSON.stringify(parsedLogs));
 
-    // Display parsed logs in console for verification
-    console.log('Selected Option:', selectedOptions);
-    console.log('Parsed Logs:', parsedLogs);
+    console.log('Stored selectedOptions:', selectedOptions);
+    console.log('Stored parsedLogs:', parsedLogs);
 }
 
 export function addMagicButtonEventListener() {
