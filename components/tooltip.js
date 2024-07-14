@@ -1,15 +1,18 @@
 class Tooltip {
     constructor(element) {
         this.element = element;
+        // Log File Summary
         this.logsInFile = this.element.querySelector('#logsInFile');
         this.logsFromSelectedTags = this.element.querySelector('#logsFromSelectedTags');
+        // Selected Tag Summary
         this.occurrences = this.element.querySelector('#logOccurrences');
         this.count = this.element.querySelector('#logCount');
         this.occurrencesContainer = this.element.querySelector('#logOccurrencesContainer');
         this.countContainer = this.element.querySelector('#logCountContainer');
-        this.iconContainer = this.element.querySelector('#logIconContainer'); // Container for SVG
-        this.defaultMessage = this.element.querySelector('#defaultMessage'); // Default message element
-        this.hoverDetails = this.element.querySelector('#hoverDetails'); // Hover details section
+        this.iconContainer = this.element.querySelector('#logIconContainer');
+        this.defaultMessage = this.element.querySelector('#defaultMessage');
+        // Optional Tip
+        this.hoverDetails = this.element.querySelector('#hoverDetails');
     }
 
     updateTooltip(logData) {
