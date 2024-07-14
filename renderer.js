@@ -2,6 +2,7 @@ import { populateDropdownOptions } from './renderer/dropdown-options.js';
 import { addRadioEventListeners } from './renderer/radio-events.js';
 import { addMagicButtonEventListener, addReloadButtonEventListener } from './renderer/button-events.js';
 import { forwardSelectedOptions } from './renderer/navigation.js';
+import './components/tag.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM fully loaded and parsed');
