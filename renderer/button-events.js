@@ -49,8 +49,8 @@ function processLogData(data, format, source) {
     localStorage.setItem('parsedLogs', JSON.stringify(parsedLogs));
 
     // Display parsed logs in console for verification
+    console.log('Selected Option:', selectedOptions);
     console.log('Parsed Logs:', parsedLogs);
-    console.log('Selected Options:', selectedOptions);
 
     // Redirect to viewer.html if needed for future steps
     window.location.href = 'viewer.html';

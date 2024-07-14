@@ -23,6 +23,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     } catch (error) {
         console.error('Error during initialization:', error);
-        alert('An error occurred while initializing the application. Please try again.');
+        alert('An error occurred while initialising the application. Please try again.');
     }
 });
