@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM fully loaded and parsed');
 
     // Check which page is loaded
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+    if (window.location.pathname.endsWith('main.html') || window.location.pathname === '/') {
         await populateDropdownOptions();
         addRadioEventListeners();
 
@@ -15,15 +15,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Display selected options if on parser.html
-    if (window.location.pathname.endsWith('parser.html')) {
+    // Display selected options if on viewer.html
+    if (window.location.pathname.endsWith('viewer.html')) {
         forwardSelectedOptions();
 
         // Add event listener for "LOAD AFRESH" button
         const loadAfreshButton = document.getElementById('loadAfreshButton');
         if (loadAfreshButton) {
             loadAfreshButton.addEventListener('click', () => {
-                window.location.href = 'index.html';
+                window.location.href = 'main.html';
             });
         }
     }
@@ -134,10 +134,10 @@ function handleMagicButtonClick() {
     };
 
     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
-    window.location.href = 'parser.html';
+    window.location.href = 'viewer.html';
 }
 
-// Function to display selected options on parser.html
+// Function to display selected options on viewer.html
 function forwardSelectedOptions() {
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
 

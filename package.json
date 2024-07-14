@@ -1,5 +1,5 @@
 {
-  "name": "elog-parser",
+  "name": "log-parser",
   "version": "1.0.0",
   "description": "Log Parser",
   "main": "main.js",
