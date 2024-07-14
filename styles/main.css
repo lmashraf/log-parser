@@ -1,60 +1,58 @@
-/* Body styles */
+/* General styles */
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #0C1C32; /* Dark blue background */
-    color: #E5E5E5; /* Default white text */
+    background-color: #0C1C32;
+    color: #E5E5E5;
     display: flex;
-    flex-direction: column; /* Align items vertically */
-    justify-content: flex-start; /* Align items to the top */
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
 }
 
 /* Header styles */
 .header-container {
     background-color: #0C1C32;
-    width: 100%; /* Full width */
-    max-width: 1600px; /* Set the max width */
-    height: 200px; /* Set the height */
+    width: 100%;
+    max-width: 1600px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto; /* Center the header container */
+    margin: 0 auto;
 }
 
 .header-container h1 {
-    color: #E5E5E5; /* Change LOG PARSER color */
+    color: #E5E5E5;
     margin: 0;
-    display: inline-block;
 }
 
 .header-container img {
-    width: 50px; /* Adjust size as needed */
-    margin-right: 20px; /* Add margin to the right of the icon */
-    display: inline-block;
+    width: 50px;
+    margin-right: 20px;
 }
 
 /* Container styles */
 #container {
-    text-align: center;
-    background-color: #F0F0F0; /* Container background color */
-    color: #14213D; /* Dark text */
+    background-color: #F0F0F0;
+    color: #14213D;
     padding: 40px;
-    border: 1px solid #14213D; /* Black border */
-    width: 100%; /* Make width dynamic */
-    max-width: 1000px; /* Set the max width */
+    border: 1px solid #14213D;
+    width: 100%;
+    max-width: 1000px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px; /* Space between header and container */
+    margin-top: 30px;
+    text-align: center;
 }
 
 /* Paragraph styles */
 p {
     font-size: 16px;
-    margin-bottom: 40px; /* Increase space between paragraph and form */
-    color: #1C1C32; /* Paragraph text color */
-    text-align: left; /* Align text to the left */
+    margin-bottom: 40px;
+    color: #1C1C32;
+    text-align: left;
 }
 
 /* Form container styles */
@@ -64,93 +62,93 @@ p {
 
 /* Combined container styles */
 .combined-container {
-    background-color: #EFEFEF; /* Background color for combined container */
+    background-color: #EFEFEF;
     padding: 20px;
-    border: 1px solid #14213D; /* Black border */
+    border: 1px solid #14213D;
     margin-bottom: 40px;
 }
 
 /* Section label styles */
 .section-label {
     font-weight: bold;
-    color: #14213D; /* Label text color */
+    color: #14213D;
     font-size: 14px;
-    display: block; /* Ensure the label occupies its own line */
-    margin-bottom: 10px; /* Add margin for spacing */
+    display: block;
+    margin-bottom: 10px;
 }
 
 /* Radio group styles */
 .radio-group {
     display: flex;
     align-items: center;
-    gap: 10px; /* Adjust the gap to reduce spacing */
-    flex-wrap: nowrap; /* Prevent wrapping */
+    gap: 10px;
+    flex-wrap: nowrap;
 }
 
 .radio-group label {
     margin: 0;
-    padding: 0 5px; /* Adjust padding for better alignment */
+    padding: 0 5px;
     display: flex;
     align-items: center;
-    color: #14213D; /* Label text color */
+    color: #14213D;
     font-size: 14px;
 }
 
 input[type="radio"] {
     margin-right: 5px;
-    accent-color: #0C1C32; /* Change the color of the radio button */
+    accent-color: #0C1C32;
 }
 
 /* Container styles */
 .load-from-container {
     height: 80px;
-    margin-top: 10px; /* Add margin for spacing between containers */
-    margin-bottom: 10px; /* Add margin for spacing between containers */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .select-format-container {
     height: 80px;
-    margin-top: 80px; /* Add margin for spacing between containers */
-    margin-bottom: 10px; /* Add margin for spacing between containers */
+    margin-top: 80px;
+    margin-bottom: 10px;
 }
 
 /* Input container styles */
 .input-container {
     position: relative;
     width: 100%;
-    margin-bottom: 64px; /* Add spacing below the input field */
+    margin-bottom: 64px;
 }
 
 /* Input text styles */
 input[type="text"] {
-    width: 100%; /* Make width 100% of the container */
-    padding: 15px; /* Padding for height */
-    border: 1px solid #7D8391; /* Border color */
-    font-size: 16px; /* Font size */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
-    font-family: 'Lato', sans-serif; /* Use Lato font */
-    color: #14213D; /* Text color */
-    background-color: #FFFFFF; /* Background color */
-    outline: none; /* Remove default outline */
-    height: 64px; /* Ensure sufficient height */
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #7D8391;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    color: #14213D;
+    background-color: #FFFFFF;
+    outline: none;
+    height: 64px;
     margin-top: 20px;
 }
 
 input[type="text"]::placeholder {
-    color: #7D8391; /* Placeholder text color */
-    font-style: normal; /* Remove italic style */
-    font-size: 16px; /* Font size */
+    color: #7D8391;
+    font-style: normal;
+    font-size: 16px;
 }
 
 /* Input container after styles */
 .input-container::after {
     content: '';
     display: block;
-    width: calc(100% - 30px); /* Width within padding */
+    width: calc(100% - 30px);
     height: 1px;
-    background-color: #7D8391; /* Custom underline color */
+    background-color: #7D8391;
     position: absolute;
-    bottom: 10px; /* Position the underline */
+    bottom: 10px;
     left: 15px;
 }
 
@@ -160,14 +158,14 @@ input[type="text"]::placeholder {
     padding: 10px;
     font-size: 16px;
     font-family: 'Lato', sans-serif;
-    border: 1px solid #14213D; /* Match the border color */
+    border: 1px solid #14213D;
     box-sizing: border-box;
     margin-top: 20px;
 }
 
 .dynamic-textarea {
     resize: vertical;
-    min-height: 100px; /* Minimum height for the textarea */
+    min-height: 100px;
 }
 
 .file-input-label {
@@ -179,16 +177,16 @@ input[type="text"]::placeholder {
     font-size: 16px;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
-    color: #14213D; /* Text color */
-    background-color: #FFFFFF; /* Background color */
+    color: #14213D;
+    background-color: #FFFFFF;
     box-sizing: border-box;
     margin-top: 20px;
     width: 100%;
 }
 
 .file-input-label .browse-button {
-    background-color: #14213D; /* Blue background */
-    color: #FFFFFF; /* White text */
+    background-color: #14213D;
+    color: #FFFFFF;
     padding: 10px;
     cursor: pointer;
     border: none;
@@ -198,7 +196,7 @@ input[type="text"]::placeholder {
 }
 
 .file-input-label .browse-button:hover {
-    background-color: #14213D; /* Darker blue on hover */
+    background-color: #14213D;
 }
 
 .file-input-label input[type="file"] {

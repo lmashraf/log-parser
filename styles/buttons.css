@@ -1,39 +1,38 @@
+/* Button styles */
 .magic-button {
-    background-color: #FFE455; /* Button background color */
-    color: #14213D; /* Button text color */
+    background-color: #FFE455;
+    color: #14213D;
     padding: 10px 20px;
-    border: 1px solid #14213D; /* Border color */
+    border: 1px solid #14213D;
     cursor: pointer;
     font-size: 14px;
-    display: flex; /* Align text and icon */
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Lato', sans-serif; /* Font family */
-    font-weight: bold; /* Bold text */
-    margin-left: auto; /* Align to the right */
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin-left: auto;
 }
 
 .magic-button:hover {
-    background-color: #D7FCD0; /* Hover background color */
+    background-color: #D7FCD0;
 }
 
 .magic-button:active {
-    background-color: #14213D; /* Active background color */
-    color: #FAFAFA; /* Active text color for better visibility */
+    background-color: #14213D;
+    color: #FAFAFA;
 }
 
-/* Style for the arrow icon */
 .magic-button .arrow-icon {
-    margin-left: 10px; /* Space between text and icon */
+    margin-left: 10px;
     display: inline-block;
-    width: 16px; /* Icon width */
-    height: 16px; /* Icon height */
+    width: 16px;
+    height: 16px;
     background-image: url('data:image/svg+xml;utf8,<svg fill="%2314213D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21l-1.41-1.41L17.17 13H3v-2h14.17l-6.58-6.59L12 3l9 9z"/></svg>');
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-/* Change the color of the arrow icon on active state */
 .magic-button:active .arrow-icon {
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23FAFAFA" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21l-1.41-1.41L17.17 13H3v-2h14.17l-6.58-6.59L12 3l9 9z"/></svg>');
 }
