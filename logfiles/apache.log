@@ -1,0 +1,50 @@
+[Fri Jul 14 14:20:00 2023] [info] [client 192.168.0.1] Home page accessed: /index.html
+[Fri Jul 14 14:21:10 2023] [error] [client 192.168.0.2] Form submission failed: /form
+[Fri Jul 14 14:22:45 2023] [info] [client 192.168.0.3] About page accessed: /about.html
+[Fri Jul 14 14:23:32 2023] [alert] [client 192.168.0.4] Contact page server error: /contact.html
+[Fri Jul 14 14:24:48 2023] [notice] [client 192.168.0.5] Form submission successful: /submit
+[Fri Jul 14 14:25:30 2023] [info] [client 192.168.0.6] Home page accessed again: /index.html
+[Fri Jul 14 14:26:05 2023] [info] [client 192.168.0.7] Services page accessed: /services.html
+[Fri Jul 14 14:27:18 2023] [error] [client 192.168.0.8] Products page not found: /products.html
+[Fri Jul 14 14:28:44 2023] [info] [client 192.168.0.9] FAQ page accessed: /faq.html
+[Fri Jul 14 14:29:55 2023] [crit] [client 192.168.0.10] Unauthorized login attempt: /login
+[Fri Jul 14 14:30:20 2023] [debug] [client 192.168.0.11] Debugging endpoint hit: /debug
+[Fri Jul 14 14:31:15 2023] [info] [client 192.168.0.12] Home page reloaded: /home.html
+[Fri Jul 14 14:32:05 2023] [info] [client 192.168.0.13] API update request successful: /api/update
+[Fri Jul 14 14:33:25 2023] [alert] [client 192.168.0.14] Settings page server error: /settings.html
+[Fri Jul 14 14:34:45 2023] [notice] [client 192.168.0.15] API delete request successful: /api/delete
+[Fri Jul 14 14:35:50 2023] [info] [client 192.168.0.16] Profile page accessed: /profile.html
+[Fri Jul 14 14:36:30 2023] [info] [client 192.168.0.17] Dashboard page accessed: /dashboard.html
+[Fri Jul 14 14:37:12 2023] [error] [client 192.168.0.18] Help page not found: /help.html
+[Fri Jul 14 14:38:05 2023] [info] [client 192.168.0.19] Stats page accessed: /stats.html
+[Fri Jul 14 14:39:15 2023] [info] [client 192.168.0.20] User logged out: /logout
+[Fri Jul 14 14:40:20 2023] [error] [client 192.168.0.21] 404 page not found: /404.html
+[Fri Jul 14 14:41:25 2023] [notice] [client 192.168.0.22] API create request successful: /api/create
+[Fri Jul 14 14:42:30 2023] [info] [client 192.168.0.23] Terms page accessed: /terms.html
+[Fri Jul 14 14:43:35 2023] [info] [client 192.168.0.24] Privacy page accessed: /privacy.html
+[Fri Jul 14 14:44:45 2023] [info] [client 192.168.0.25] Feedback submitted: /feedback
+[Fri Jul 14 14:45:55 2023] [info] [client 192.168.0.26] Archive page accessed: /archive.html
+[Fri Jul 14 14:46:05 2023] [notice] [client 192.168.0.27] API edit request successful: /api/edit
+[Fri Jul 14 14:47:15 2023] [alert] [client 192.168.0.28] Contact page server error: /contact.html
+[Fri Jul 14 14:48:25 2023] [info] [client 192.168.0.29] Status page accessed: /status.html
+[Fri Jul 14 14:49:35 2023] [info] [client 192.168.0.30] Subscription request successful: /subscribe
+[Fri Jul 14 14:50:45 2023] [error] [client 192.168.0.31] Unsubscribe page not found: /unsubscribe.html
+[Fri Jul 14 14:51:55 2023] [info] [client 192.168.0.32] Products page accessed: /products.html
+[Fri Jul 14 14:52:05 2023] [info] [client 192.168.0.33] Cart updated: /cart
+[Fri Jul 14 14:53:15 2023] [info] [client 192.168.0.34] Checkout page accessed: /checkout.html
+[Fri Jul 14 14:54:25 2023] [notice] [client 192.168.0.35] Payment processed: /payment
+[Fri Jul 14 14:55:35 2023] [info] [client 192.168.0.36] Order confirmation page accessed: /confirmation.html
+[Fri Jul 14 14:56:45 2023] [info] [client 192.168.0.37] Review submitted: /api/review
+[Fri Jul 14 14:57:55 2023] [info] [client 192.168.0.38] Review page accessed: /review.html
+[Fri Jul 14 14:58:05 2023] [alert] [client 192.168.0.39] Report submission error: /api/report
+[Fri Jul 14 14:59:15 2023] [crit] [client 192.168.0.40] Unauthorized admin access attempt: /admin.html
+[Fri Jul 14 15:00:25 2023] [info] [client 192.168.0.41] Metrics page accessed: /metrics.html
+[Fri Jul 14 15:01:35 2023] [notice] [client 192.168.0.42] Metrics updated: /api/metrics
+[Fri Jul 14 15:02:45 2023] [info] [client 192.168.0.43] Data page accessed: /data.html
+[Fri Jul 14 15:03:55 2023] [error] [client 192.168.0.44] Reports page not found: /reports.html
+[Fri Jul 14 15:04:05 2023] [info] [client 192.168.0.45] Data import successful: /api/import
+[Fri Jul 14 15:05:15 2023] [info] [client 192.168.0.46] Export page accessed: /export.html
+[Fri Jul 14 15:06:25 2023] [debug] [client 192.168.0.47] Debugging endpoint hit: /debug
+[Fri Jul 14 15:07:35 2023] [alert] [client 192.168.0.48] Client sent malformed Host header: /home/test
+[Fri Jul 14 15:08:45 2023] [notice] [client 192.168.0.49] caught SIGTERM, shutting down
+[Fri Jul 14 15:09:55 2023] [info] [client 192.168.0.50] Restarting server after shutdown

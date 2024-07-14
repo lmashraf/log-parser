@@ -7,8 +7,10 @@ require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
 
+let mainWindow;
+
 function createWindow() {
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 1400,
         height: 900,
         autoHideMenuBar: true,
@@ -22,7 +24,6 @@ function createWindow() {
     mainWindow.loadFile('main.html');
     // debug
     mainWindow.webContents.openDevTools();
-
 }
 
 app.whenReady().then(createWindow);
@@ -37,4 +38,11 @@ ipcMain.handle('get-dropdown-options', async () => {
     const configPath = path.join(__dirname, './properties/dropdown-options.json');
     const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
     return config.dropdownOptions;
+});
+
+// Add the new IPC listener for resizing the window
+ipcMain.on('resize-window', (event, { width, height }) => {
+    if (mainWindow) {
+        mainWindow.setBounds({ x: 0, y: 0, width, height }); // Adjust position to (0, 0) and resize
+    }
 });
