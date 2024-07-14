@@ -1,4 +1,4 @@
-import DropdownBox from '../components/dropdownbox.js';
+import DropdownBox from '../components/dropdown-box.js';
 
 export async function populateDropdownOptions() {
     const formatSelect = document.getElementById('formatSelect');
