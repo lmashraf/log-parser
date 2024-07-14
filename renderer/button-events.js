@@ -9,7 +9,11 @@ export function handleMagicButtonClick() {
     if (loadFrom === 'url') {
         fetch(sourceInputElement.value)
             .then(response => response.text())
-            .then(data => processLogData(data, formatSelectLabel, sourceInputElement.value))
+            .then(data => {
+                processLogData(data, formatSelectLabel, sourceInputElement.value);
+                window.electron.send('resize-window', { width: 1400, height: screen.height }); // Resize window here
+                window.location.href = 'viewer.html'; // Redirect to viewer.html
+            })
             .catch(error => {
                 console.error('Error fetching log file:', error);
                 alert('Failed to fetch log file. Please check the URL and try again.');
@@ -21,6 +25,8 @@ export function handleMagicButtonClick() {
             reader.onload = (event) => {
                 const data = event.target.result;
                 processLogData(data, formatSelectLabel, file.name);
+                window.electron.send('resize-window', { width: 1400, height: screen.height }); // Resize window here
+                window.location.href = 'viewer.html'; // Redirect to viewer.html
             };
             reader.onerror = (error) => {
                 console.error('Error reading file:', error);
@@ -33,6 +39,8 @@ export function handleMagicButtonClick() {
     } else if (loadFrom === 'text') {
         const logData = sourceInputElement.value;
         processLogData(logData, formatSelectLabel, 'Text Log');
+        window.electron.send('resize-window', { width: 1400, height: screen.height }); // Resize window here
+        window.location.href = 'viewer.html'; // Redirect to viewer.html
     }
 }
 
@@ -51,9 +59,6 @@ function processLogData(data, format, source) {
     // Display parsed logs in console for verification
     console.log('Selected Option:', selectedOptions);
     console.log('Parsed Logs:', parsedLogs);
-
-    // Redirect to viewer.html if needed for future steps
-    window.location.href = 'viewer.html';
 }
 
 export function addMagicButtonEventListener() {

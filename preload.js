@@ -6,5 +6,8 @@ contextBridge.exposeInMainWorld('electron', {
         const options = await ipcRenderer.invoke('get-dropdown-options');
         console.log('Received options in preload:', options);
         return options;
+    },
+    send: (channel, data) => {
+        ipcRenderer.send(channel, data);
     }
 });
