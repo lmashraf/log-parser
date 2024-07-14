@@ -40,7 +40,7 @@ body {
 
 #container {
     text-align: left; /* Align text to the left */
-    background-color: #F0F0F0; /* Container background color */
+    background-color: #FAFAFA; /* Container background color */
     color: #14213D;
     padding: 40px;
     border: 1px solid #14213D;
@@ -52,14 +52,16 @@ body {
 }
 
 .combined-container {
-    background-color: #FAFAFA; /* Light grey background */
+    background-color: #F0F0F0; /* Light grey background */
     padding: 20px;
     border: 1px solid #14213D;
     margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 18px; /* Adjusted font size for smaller headers */
+    font-size: 20px; /* Adjusted font size for smaller headers */
+    font-family: 'Lato', sans-serif;
+    font-weight: 400; /* Regular weight */
     color: #14213D;
     margin-bottom: 20px;
 }
@@ -76,10 +78,11 @@ h2 {
 }
 
 .summary-value {
-    background-color: #E0E0E0; /* Disabled textbox color */
+    background-color: #E5E5E5; /* Disabled textbox color */
     border: 1px solid #7D8391;
     padding: 10px 15px; /* Match padding from index.css */
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 400;
     color: #7D8391;
     width: 100%;
     text-align: left;
@@ -108,7 +111,6 @@ h2 {
     box-sizing: border-box;
 }
 
-
 #logChart {
     width: 100%;
     height: 100%;
@@ -134,15 +136,17 @@ h2 {
     font-size: 16px;
     color: #14213D;
     text-align: left;
-    width: 20%;
-    height: 400px;
+    width: 25%; /* Adjusted width to be smaller */
+    height: 100%; /* Set height to match the content */
     box-sizing: border-box;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .log-table table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .log-table th, .log-table td {
@@ -152,8 +156,8 @@ h2 {
 }
 
 .log-table th {
-    background-color: #14213D;
-    color: #FFFFFF;
+    background-color: #E5E5E5;
+    color: #14213D;
 }
 
 .log-table tbody tr:nth-child(even) {

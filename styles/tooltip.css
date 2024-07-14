@@ -1,0 +1,37 @@
+.tooltip {
+    background-color: #FFFFFF;
+    border: 1px solid #7D8391;
+    padding: 20px;
+    font-size: 14px; /* Adjusted font size */
+    color: #14213D;
+    text-align: left;
+    width: 300px;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 20px;
+}
+
+.tooltip p {
+    margin: 10px 0;
+}
+
+.tooltip .section {
+    margin: 10px 0;
+    padding-bottom: 5px;
+}
+
+.tooltip .section.line {
+    border-bottom: 1px solid #D3D3D3; /* Greyish bottom border */
+}
+
+.tooltip #logLabelContainer,
+.tooltip #logOccurrencesContainer,
+.tooltip #logCountContainer {
+    display: none; /* Hide these by default */
+}
+
+.tooltip #logLabelContainer span,
+.tooltip #logOccurrencesContainer span,
+.tooltip #logCountContainer span {
+    font-weight: bold; /* Bold the span text */
+}

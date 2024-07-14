@@ -1,4 +1,4 @@
-class CustomDropdown {
+class DropdownBox {
     constructor(element) {
         this.element = element;
         this.selectElement = this.element.querySelector('select');
@@ -72,11 +72,11 @@ class CustomDropdown {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.custom-select').forEach(select => {
         if (!select.classList.contains('initialized')) {
-            new CustomDropdown(select);
+            new DropdownBox(select);
             select.classList.add('initialized');
         }
     });
 });
 
-export default CustomDropdown;
+export default DropdownBox;
 

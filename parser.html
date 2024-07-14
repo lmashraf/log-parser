@@ -3,8 +3,10 @@
 <head>
     <title>Log Parser - Results</title>
     <script src="renderer.js" type="module"></script>
+    <script src="tooltip.js" type="module"></script> <!-- Include tooltip.js -->
     <link rel="stylesheet" type="text/css" href="styles/parser.css">
     <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+    <link rel="stylesheet" type="text/css" href="styles/tooltip.css"> <!-- Include tooltip.css -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,8 +21,8 @@
         </button>
     </div>
     <div id="container">
+        <h2>Input Summary</h2>
         <div class="combined-container">
-            <h2>Input Summary</h2>
             <div class="summary-field">
                 <label>Date Source</label>
             </div>
@@ -30,42 +32,72 @@
             </div>
             <input type="text" id="sourceFormat" class="summary-value" disabled>
         </div>
+        <h2>Content Breakdown</h2>
         <div class="combined-container">
-            <h2>Content Breakdown</h2>
             <div class="content-layout">
                 <div class="chart-container">
                     <canvas id="logChart"></canvas>
                     <div class="legend">
-                        <span class="legend-item">ALERT</span>
-                        <span class="legend-item">ERROR</span>
-                        <span class="legend-item">INFO</span>
-                        <span class="legend-item">NOTICE</span>
-                        <span class="legend-item">CRIT</span>
-                        <span class="legend-item">DEBUG</span>
-                        <span class="legend-item">WARN</span>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #FF0000;"></div>
+                            <span class="legend-label">ALERT</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #FFA500;"></div>
+                            <span class="legend-label">ERROR</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #00FF00;"></div>
+                            <span class="legend-label">INFO</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #0000FF;"></div>
+                            <span class="legend-label">NOTICE</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #800080;"></div>
+                            <span class="legend-label">CRIT</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #FFFF00;"></div>
+                            <span class="legend-label">DEBUG</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #808080;"></div>
+                            <span class="legend-label">WARN</span>
+                        </div>
                     </div>
                 </div>
-                <div class="log-summary">
+                <div class="tooltip" id="logSummary">
                     <h3>File Log Summary</h3>
                     <p>Logs in file: <span id="logsInFile">100000</span></p>
                     <p>Logs from selected tags: <span id="logsFromSelectedTags">15000</span></p>
+                    <p id="logLabelContainer">
+                        <span id="logLabel"></span>
+                    </p>
+                    <p id="logOccurrencesContainer">
+                        Occurrences: <span id="logOccurrences"></span>
+                    </p>
+                    <p id="logCountContainer">
+                        Count: <span id="logCount"></span>
+                    </p>
                     <p>Hover over a bar for detailed statistics.</p>
                 </div>
             </div>
-        </div>
-        <div class="log-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Timestamp</th>
-                        <th>Severity</th>
-                        <th>Message</th>
-                    </tr>
-                </thead>
-                <tbody id="logTableBody">
-                    <!-- Log entries will be dynamically inserted here -->
-                </tbody>
-            </table>
+            <div class="log-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Severity</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody">
+                        <!-- Log entries will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
         <button class="magic-button" id="dumpContentButton">
             DUMP CONTENT

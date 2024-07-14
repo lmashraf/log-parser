@@ -1,4 +1,4 @@
-import CustomDropdown from './components/custom-dropdown.js';
+import DropdownBox from './components/dropdownbox.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM fully loaded and parsed');
@@ -47,19 +47,19 @@ async function populateDropdownOptions() {
             formatSelect.appendChild(opt);
         });
 
-        console.log('Dropdown options populated');
-        initializeCustomDropdown(); // Initialize only after options are populated
+        console.log('Dropdown Box options populated');
+        initializeDropdownBox(); // Initialize only after options are populated
     } catch (error) {
         console.error('Error fetching dropdown options:', error);
     }
 }
 
-function initializeCustomDropdown() {
+function initializeDropdownBox() {
     document.querySelectorAll('.custom-select').forEach(select => {
         if (!select.classList.contains('initialized')) {
-            new CustomDropdown(select);
+            new DropdownBox(select);
             select.classList.add('initialized');
-            console.log('Custom dropdown initialized for:', select);
+            console.log('Dropdown Box initialized for:', select);
         }
     });
 }
