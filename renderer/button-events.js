@@ -14,7 +14,7 @@ export function handleMagicButtonClick() {
                 setTimeout(() => {
                     window.electron.send('resize-window', { width: 1400, height: screen.height });
                     window.location.href = 'viewer.html';
-                }, 100); // Ensure data is set before navigation
+                }, 100);
             })
             .catch(error => {
                 console.error('Error fetching log file:', error);
@@ -30,7 +30,7 @@ export function handleMagicButtonClick() {
                 setTimeout(() => {
                     window.electron.send('resize-window', { width: 1400, height: screen.height });
                     window.location.href = 'viewer.html';
-                }, 100); // Ensure data is set before navigation
+                }, 100);
             };
             reader.onerror = (error) => {
                 console.error('Error reading file:', error);
@@ -46,7 +46,7 @@ export function handleMagicButtonClick() {
         setTimeout(() => {
             window.electron.send('resize-window', { width: 1400, height: screen.height });
             window.location.href = 'viewer.html';
-        }, 100); // Ensure data is set before navigation
+        }, 100);
     }
 }
 
