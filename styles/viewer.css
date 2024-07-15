@@ -83,7 +83,7 @@ h2 {
 
 .summary-value {
     background-color: #E5E5E5;
-    border: 1px solid #7D8391;
+    border: 1px solid #D0D0D0;
     padding: 10px 15px;
     font-size: 14px;
     font-weight: 400;
@@ -132,24 +132,8 @@ h2 {
     width: 100%;
 }
 
-.tooltip {
-    width: 25%;
-    background-color: #FAFAFA;
-    border: 1px solid #D3D3D3;
-    padding: 20px;
-    font-size: 14px;
-    color: #14213D;
-    box-sizing: border-box;
-}
-
-.tooltip .section {
-    margin: 10px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #D3D3D3;
-}
-
 .log-table {
-    max-height: 200px; /* Set max-height to allow scrolling */
+    max-height: 250px; /* Set max-height to allow scrolling */
     overflow-y: auto;
 }
 
@@ -161,7 +145,7 @@ h2 {
 }
 
 .log-table th, .log-table td {
-    border: 1px solid #7D8391;
+    border: 1px solid #D0D0D0;
     padding: 10px;
     text-align: left;
 }
@@ -171,10 +155,28 @@ h2 {
     color: #14213D;
 }
 
-.log-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+.log-table tbody tr {
+    background-color: #FAFAFA;
 }
 
 .log-table tbody tr:hover {
-    background-color: #ddd;
+    background-color: #F0f0f0;
+}
+
+.log-table th:nth-child(1),
+.log-table td:nth-child(1) {
+    width: 250px; /* Fit the content of Timestamp */
+    white-space: nowrap;
+}
+
+.log-table th:nth-child(2),
+.log-table td:nth-child(2) {
+    width: 100px; /* Fit the content of Log Level */
+    text-align: left;
+    white-space: nowrap;
+}
+
+.log-table th:nth-child(3),
+.log-table td:nth-child(3) {
+    width: auto; /* Take remaining space for Message */
 }

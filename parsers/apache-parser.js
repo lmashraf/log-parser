@@ -5,12 +5,9 @@ function parseApacheLog(logLine) {
     const match = logLine.match(regex);
     if (match) {
         return {
-            ...logEntry,
             timestamp: match[1],
             logLevel: match[2],
-            clientIP: match[3],
-            additionalInfo: match[4],
-            message: match[5]
+            message: match[3] + " " + match[4] + " " + match[5]
         };
     }
     return null;
