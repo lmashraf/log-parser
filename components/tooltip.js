@@ -20,8 +20,8 @@ class Tooltip {
         this.logsFromSelectedTags.textContent = logData.logsFromSelectedTags;
 
         if (logData.tagElement) {
-            this.iconContainer.innerHTML = ''; // Clear existing content
-            this.iconContainer.appendChild(logData.tagElement); // Insert the cloned tag element
+            this.iconContainer.innerHTML = '';
+            this.iconContainer.appendChild(logData.tagElement);
             this.iconContainer.style.display = 'block';
         } else {
             this.iconContainer.style.display = 'none';
@@ -59,22 +59,23 @@ class Tooltip {
 
 document.addEventListener('DOMContentLoaded', () => {
     const tooltipElement = document.getElementById('logSummary');
-    if (tooltipElement) {
+    const parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
+    const occurrences = JSON.parse(localStorage.getItem('occurrences'));
+    const percentages = JSON.parse(localStorage.getItem('percentages'));
+
+    if (tooltipElement && parsedLogs) {
         const tooltip = new Tooltip(tooltipElement);
 
         const tagItems = document.querySelectorAll('.tag-item');
         tagItems.forEach(tagItem => {
-            tagItem.addEventListener('mouseenter', (event) => {
-                const clonedTag = tagItem.cloneNode(true);
-                clonedTag.classList.remove('disabled');
-                clonedTag.style.width = ''; // Reset width
-                clonedTag.style.height = ''; // Reset height
+            tagItem.addEventListener('mouseenter', () => {
+                const logLevel = tagItem.dataset.tag.toUpperCase();
                 const logData = {
-                    logsInFile: 100000,
-                    logsFromSelectedTags: 15000,
-                    tagElement: clonedTag,
-                    occurrences: Math.random() * 100, // TODO: Replace with actual
-                    count: Math.floor(Math.random() * 100) // TODO: Replace with actual
+                    logsInFile: parsedLogs.length,
+                    logsFromSelectedTags: parsedLogs.length,
+                    tagElement: tagItem.cloneNode(true),
+                    occurrences: percentages[logLevel] !== undefined ? percentages[logLevel] : 0,
+                    count: occurrences[logLevel] !== undefined ? occurrences[logLevel] : 0
                 };
                 tooltip.updateTooltip(logData);
             });

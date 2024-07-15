@@ -5,12 +5,9 @@ function parseNginxLog(logLine) {
     const match = logLine.match(regex);
     if (match) {
         return {
-            ...logEntry,
             timestamp: match[2],
             logLevel: 'INFO', // Assuming INFO as Nginx doesn't have log level in this format
-            clientIP: match[1],
-            additionalInfo: match[3],
-            message: match[8]
+            message: match[4] + " " + match[8]
         };
     }
     return null;

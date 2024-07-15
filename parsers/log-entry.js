@@ -1,9 +1,7 @@
 const logEntry = {
     timestamp: '',
     logLevel: '',
-    message: '',
-    clientIP: '',
-    additionalInfo: ''
+    message: ''
 };
 
 export default logEntry;

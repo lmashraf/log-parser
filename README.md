@@ -6,7 +6,7 @@ Log Parser is an application that allows users to easily upload, parse, filter, 
 
 - **Load Logs**: Import log files from local files, URLs, or text input.
 - **Select Format**: Choose from predefined or custom log formats.
-- **Visual Breakdown**: Graphical representation of log content by severity.
+- **Visual Breakdown**: Graphical representation of log content by log level.
 - **Detailed View**: Detailed log entries in a tabular format.
 - **Summary**: Overview of log metrics like size and entry count.
 - **Export**: Option to export parsed log content.

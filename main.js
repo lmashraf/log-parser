@@ -35,7 +35,7 @@ app.on('window-all-closed', () => {
 });
 
 ipcMain.handle('get-dropdown-options', async () => {
-    const configPath = path.join(__dirname, './properties/dropdown-options.json');
+    const configPath = path.join(__dirname, './properties/log-formats.json');
     const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
     return config.dropdownOptions;
 });
