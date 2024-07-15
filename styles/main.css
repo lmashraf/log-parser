@@ -63,9 +63,9 @@ p {
 /* Combined container styles */
 .combined-container {
     background-color: #EFEFEF;
-    padding: 20px;
+    padding: 32px;
     border: 1px solid #14213D;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 /* Section label styles */
