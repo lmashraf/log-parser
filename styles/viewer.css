@@ -35,18 +35,23 @@ body {
 
 .header-container img {
     width: 120px;
-    margin-right: 10px;
-    margin-left: 10px;
+}
+
+hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #CBD5E0; /* Match the design's line color */
+    margin: 0 0 10px 0;
 }
 
 #container {
     text-align: left;
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
     color: #14213D;
     padding: 40px;
     border: 1px solid #7D8391;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1450px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
     box-sizing: border-box;
@@ -54,9 +59,8 @@ body {
 }
 
 .combined-container {
-    background-color: #F0F0F0;
+    background-color: #FFFFFF;
     padding: 32px;
-    border: 1px solid #D0D0D0;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -101,7 +105,7 @@ h2 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 11px;
     margin-left: 10px;
     margin-top: 24px; /* Add margin to ensure spacing between the chart and the legend */
 }
@@ -115,15 +119,15 @@ h2 {
 }
 
 .log-table {
-    max-height: 250px; /* Set max-height to allow scrolling */
+    max-height: 350px; /* Set max-height to allow scrolling */
     overflow-y: auto;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 .log-table table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .log-table th, .log-table td {
@@ -161,8 +165,4 @@ h2 {
 .log-table th:nth-child(3),
 .log-table td:nth-child(3) {
     width: auto; /* Take remaining space for Message */
-}
-
-.magic-button {
-    margin-left: 20px;
 }

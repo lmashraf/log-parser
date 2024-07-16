@@ -12,7 +12,7 @@ let mainWindow;
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1200,
-        height: 750,
+        height: 740,
         autoHideMenuBar: true,
         title: "Log Parser",
         thickFrame: true,
@@ -27,6 +27,8 @@ function createWindow() {
             enableRemoteModule: false,
         }
     });
+
+    initialBounds = mainWindow.getBounds();
 
     mainWindow.loadFile('main.html');
     // debug
@@ -58,6 +60,12 @@ ipcMain.handle('get-dropdown-options', async () => {
 ipcMain.on('resize-window', (event, { width, height }) => {
     if (mainWindow) {
         const [x, y] = mainWindow.getPosition();
-        mainWindow.setBounds({ x, y: 0, width, height });
+        mainWindow.setBounds({ x, y: 50, width, height });
+    }
+});
+
+ipcMain.on('restore-initial-size', (event) => {
+    if (mainWindow) {
+        mainWindow.setBounds(initialBounds);
     }
 });

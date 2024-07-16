@@ -61,6 +61,7 @@ p {
 /* Form container styles */
 .form-container {
     text-align: left;
+    margin-bottom: 80px;
 }
 
 /* Section label styles */

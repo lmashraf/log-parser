@@ -9,6 +9,10 @@
     padding: 20px 0 20px 0;
 }
 
+.chart-section {
+    width: 60%;
+}
+
 .bar {
     position: relative;
     width: 16px;
