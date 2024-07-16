@@ -1,4 +1,6 @@
-import { LOG_LEVEL_COLORS, updateTable } from './chart.js';
+import { updateTable } from '../renderer/process-data.js';
+import { LOG_LEVEL_COLORS } from './chart.js';
+
 
 class Tag {
     constructor(element) {
@@ -7,7 +9,11 @@ class Tag {
     }
 
     // Function to toggle the tag's enabled/disabled state and update the associated bar
-    toggleTag() {
+    toggleTag(event) {
+        if (event && event.handled) {
+            return;
+        }
+
         const tagName = this.element.dataset.tag.toUpperCase();
         const barElement = document.querySelector(`.bar[data-tag="${tagName}"]`);
 
@@ -29,6 +35,19 @@ class Tag {
 
         // Update table based on toggled state
         updateTable();
+        const filteredLogsLength = updateTable();
+        this.updateTooltip(filteredLogsLength);
+
+        if (event) {
+            event.handled = true;
+        }
+    }
+
+    updateTooltip(filteredLogsLength) {
+        const logsFromSelectedTags = document.getElementById('logsFromSelectedTags');
+        if (logsFromSelectedTags) {
+            logsFromSelectedTags.textContent = filteredLogsLength;
+        }
     }
 }
 
@@ -40,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const tagInstance = new Tag(element);
         element.addEventListener('click', (event) => {
             event.stopPropagation(); // Prevent the event from bubbling up to the bar
-            tagInstance.toggleTag();
+            event.handled = true; // Mark the event as handled
+            tagInstance.toggleTag(event);
         });
     });
 });

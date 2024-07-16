@@ -1,3 +1,5 @@
+let filteredLogsLength = 0;
+
 export function forwardSelectedOptions() {
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
 
@@ -24,7 +26,7 @@ function processLogs(logs) {
     if (logs) {
         renderChart(logs);
         updateTooltipData(logs);
-        populateTable(logs);
+        filteredLogsLength = updateTable(); // Ensure the table is populated and update the filtered logs length
     } else {
         console.error('No logs provided to displayLogs');
     }
@@ -66,18 +68,17 @@ function updateTooltipData(logs) {
     localStorage.setItem('percentages', JSON.stringify(percentages));
 }
 
-
-// Renders the chart based on the parsed logs
-function renderChart(logs) {
-    console.log("Rendering the chart with logs:", logs);
-}
-
-// Populates the table and renders its content based on the parsed logs
-function populateTable(logs) {
+// Function to update the table based on the current state of the tags
+export function updateTable() {
     const logTableBody = document.getElementById('logTableBody');
     logTableBody.innerHTML = ''; // Clear any existing rows
 
-    logs.forEach(log => {
+    const parsedLogs = getParsedLogs();
+    const disabledTags = Array.from(document.querySelectorAll('.tag-item.disabled')).map(tag => tag.dataset.tag.toUpperCase());
+
+    const filteredLogs = parsedLogs.filter(log => !disabledTags.includes(log.logLevel.toUpperCase()));
+
+    filteredLogs.forEach(log => {
         const row = document.createElement('tr');
 
         // Create and append Timestamp cell
@@ -104,5 +105,16 @@ function populateTable(logs) {
         logTableBody.appendChild(row);
     });
 
-    console.log("Populated the table with logs:", logs.length);
+    console.log("Updated the table with filtered logs:", filteredLogs.length);
+    filteredLogsLength = filteredLogs.length;
+    return filteredLogsLength; // Return the number of filtered logs
+}
+
+export function getFilteredLogsLength() {
+    return filteredLogsLength;
+}
+
+// Renders the chart based on the parsed logs
+function renderChart(logs) {
+    console.log("Rendering the chart with logs:", logs);
 }
