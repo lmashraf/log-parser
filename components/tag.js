@@ -5,6 +5,29 @@ class Tag {
     constructor(element) {
         this.element = element;
         this.label = this.element.querySelector('.tag-label');
+        this.img = this.element.querySelector('img');
+        this.tagName = this.element.dataset.tag.toUpperCase();
+        this.barElement = document.querySelector(`.bar[data-tag="${this.tagName}"]`);
+    }
+
+    enableTag() {
+        this.element.classList.remove('disabled');
+        this.img.src = `assets/tag-${this.tagName.toLowerCase()}.svg`;
+        this.element.style.backgroundColor = LOG_LEVEL_COLORS.DEFAULT;
+        if (this.barElement) {
+            this.barElement.querySelector('.bar-inner').style.backgroundColor = LOG_LEVEL_COLORS[this.tagName] || LOG_LEVEL_COLORS.DEFAULT;
+        }
+        console.log(`Enabled tag: ${this.tagName}`);
+    }
+
+    disableTag() {
+        this.element.classList.add('disabled');
+        this.img.src = 'assets/tag-disabled.svg';
+        this.element.style.backgroundColor = LOG_LEVEL_COLORS.DISABLED;
+        if (this.barElement) {
+            this.barElement.querySelector('.bar-inner').style.backgroundColor = LOG_LEVEL_COLORS.DISABLED;
+        }
+        console.log(`Disabled tag: ${this.tagName}`);
     }
 
     toggleTag(event) {
@@ -12,28 +35,8 @@ class Tag {
             return;
         }
 
-        const tagName = this.element.dataset.tag.toUpperCase();
-        const barElement = document.querySelector(`.bar[data-tag="${tagName}"]`);
+        (this.element.classList.contains('disabled')) ? this.enableTag(): this.disableTag();
 
-        if (this.element.classList.contains('disabled')) {
-            this.element.classList.remove('disabled');
-            this.element.querySelector('img').src = `assets/tag-${tagName.toLowerCase()}.svg`;
-            if (barElement) {
-                this.element.style.backgroundColor = LOG_LEVEL_COLORS.DEFAULT;
-                barElement.querySelector('.bar-inner').style.backgroundColor = LOG_LEVEL_COLORS[tagName] || LOG_LEVEL_COLORS.DEFAULT;
-            }
-            console.log(`Enabled tag: ${tagName}`);
-        } else {
-            this.element.classList.add('disabled');
-            this.element.querySelector('img').src = `assets/tag-disabled.svg`;
-            if (barElement) {
-                barElement.querySelector('.bar-inner').style.backgroundColor =  LOG_LEVEL_COLORS.DISABLED;
-                this.element.style.backgroundColor =  LOG_LEVEL_COLORS.DISABLED;
-            }
-            console.log(`Disabled tag: ${tagName}`);
-        }
-
-        // Update table based on toggled state
         updateTable();
 
         if (event) {
@@ -47,9 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tagElements.forEach(element => {
         const tagInstance = new Tag(element);
-        element.addEventListener('click', (event) => {
-            tagInstance.toggleTag(event);
-        });
+        element.addEventListener('click', tagInstance.toggleTag.bind(tagInstance));
     });
 });
 

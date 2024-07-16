@@ -6,22 +6,23 @@ import './components/tag.js';
 import './components/chart.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const isMainPage = window.location.pathname.endsWith('main.html') || window.location.pathname === '/';
+    const isViewerPage = window.location.pathname.endsWith('viewer.html');
+
     try {
-        // Check which page is loaded
-        if (window.location.pathname.endsWith('main.html') || window.location.pathname === '/') {
+        if (isMainPage) {
             await populateDropdownOptions();
             addRadioEventListeners();
             addMagicButtonEventListener();
         }
 
-        // Display selected options if on viewer.html
-        if (window.location.pathname.endsWith('viewer.html')) {
+        if (isViewerPage) {
             forwardSelectedOptions();
             forwardParsedLogs();
             addReloadButtonEventListener();
         }
     } catch (error) {
-        console.error('Error during initialization:', error);
+        console.error('Error during initialisation:', error);
         alert('An error occurred while initialising the application. Please try again.');
     }
 });

@@ -24,7 +24,7 @@ export function forwardParsedLogs() {
 }
 
 function processLogs(logs) {
-    if (logs) {
+    if (logs && Array.isArray(logs)) {
         updateTooltipData(logs);
 
         filteredLogsLength = updateTable();
@@ -40,14 +40,12 @@ function processLogs(logs) {
             logsInFile.textContent = totalLogsLength;
         }
     } else {
-        console.error('No logs provided to displayLogs');
+        console.error('No logs provided to processLogs');
     }
 }
 
 export function getParsedLogs() {
-    const parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
-
-    return parsedLogs;
+    return JSON.parse(localStorage.getItem('parsedLogs'));
 }
 
 export function calculateOccurrences(logs) {

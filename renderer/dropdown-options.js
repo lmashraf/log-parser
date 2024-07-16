@@ -19,7 +19,7 @@ export async function populateDropdownOptions() {
         });
 
         console.log('Dropdown Box options populated');
-        initialiseDropdownBox(); // Initialize only after options are populated
+        initialiseDropdownBox();
     } catch (error) {
         console.error('Error fetching dropdown options:', error);
     }
