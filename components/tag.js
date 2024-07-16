@@ -1,6 +1,5 @@
-import { updateTable } from '../renderer/process-data.js';
 import { LOG_LEVEL_COLORS } from './chart.js';
-
+import { updateTable } from '../renderer/process-data.js';
 
 class Tag {
     constructor(element) {
@@ -34,7 +33,6 @@ class Tag {
         }
 
         // Update table based on toggled state
-        updateTable();
         const filteredLogsLength = updateTable();
         this.updateTooltip(filteredLogsLength);
 
@@ -58,8 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tagElements.forEach(element => {
         const tagInstance = new Tag(element);
         element.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent the event from bubbling up to the bar
-            event.handled = true; // Mark the event as handled
+            //event.stopPropagation(); // Prevent the event from bubbling up to the bar
             tagInstance.toggleTag(event);
         });
     });

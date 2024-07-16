@@ -1,7 +1,6 @@
-import Tag from '../components/tag.js';
 import Tooltip from '../components/tooltip.js';
-import { calculateOccurrences, calculatePercentages, getParsedLogs, updateTable, getFilteredLogsLength } from '../renderer/process-data.js';
-
+import { calculateOccurrences, calculatePercentages, updateTable, getFilteredLogsLength, getParsedLogs } from '../renderer/process-data.js';
+import Tag from '../components/tag.js';
 
 export const LOG_LEVEL_COLORS = {
     ALERT: '#FFE455',
@@ -22,7 +21,7 @@ class Chart {
         this.parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
         this.occurrences = calculateOccurrences(this.parsedLogs);
         this.percentages = calculatePercentages(this.occurrences, this.parsedLogs.length);
-        this.filteredLogsLength = getFilteredLogsLength(); // Initialize with the filtered log length
+        this.filteredLogsLength = this.parsedLogs.length; // Initialize with the total log length
         this.createBars();
         this.chartContainer.addEventListener('mousemove', this.handleHover.bind(this));
 
@@ -31,11 +30,14 @@ class Chart {
             const tagInstance = new Tag(element);
             element.addEventListener('click', (event) => {
                 event.stopPropagation();
-                tagInstance.toggleTag();
-                this.filteredLogsLength = updateTable(); // Update the filtered logs length
-                this.updateTooltip();
+                this.handleTagToggle(event, tagInstance);
+            });
+            element.addEventListener('mouseenter', () => {
+                this.handleHoverTag(element);
             });
         });
+
+        this.initialTooltipUpdate(); // Initial tooltip update
     }
 
     createBars() {
@@ -57,24 +59,30 @@ class Chart {
 
             bar.addEventListener('click', (event) => {
                 event.stopPropagation();
-                this.toggleBar(event, bar, logLevel);
+                this.toggleBar(event, logLevel);
             });
         });
     }
 
-    toggleBar(event, barElement, logLevel) {
+    toggleBar(event, logLevel) {
         const tagElement = document.querySelector(`.tag-item[data-tag="${logLevel.toLowerCase()}"]`);
         if (tagElement) {
             const tagInstance = new Tag(tagElement);
-            tagInstance.toggleTag(event);
-            this.filteredLogsLength = updateTable(); // Update the filtered logs length
-            this.updateTooltip();
+            this.handleTagToggle(event, tagInstance);
         }
+    }
+
+    handleTagToggle(event, tagInstance) {
+        tagInstance.toggleTag(event);
+        this.filteredLogsLength = updateTable(); // Update the filtered logs length
+        this.updateTooltipChart();
     }
 
     handleHover(event) {
         const bars = this.chartContainer.children;
         const barWidth = bars[0].offsetWidth;
+
+        console.log('Hover event triggered, filteredLogsLength:', this.filteredLogsLength);
 
         Array.from(bars).forEach((bar, index) => {
             const barX = bar.getBoundingClientRect().left;
@@ -105,10 +113,41 @@ class Chart {
         });
     }
 
-    updateTooltip() {
+    handleHoverTag(tagElement) {
+        console.log('Hover tag event triggered, filteredLogsLength:', this.filteredLogsLength);
+
+        const logLevel = tagElement.dataset.tag.toUpperCase();
+        const tooltipElement = document.getElementById('logSummary');
+        const logData = {
+            logsInFile: this.parsedLogs.length,
+            logsFromSelectedTags: this.filteredLogsLength,
+            tagElement: tagElement.cloneNode(true),
+            occurrences: this.percentages[logLevel] !== undefined ? this.percentages[logLevel] : 0,
+            count: this.occurrences[logLevel] !== undefined ? this.occurrences[logLevel] : 0
+        };
+        const tooltip = new Tooltip(tooltipElement);
+        tooltip.updateTooltip(logData);
+    }
+
+    initialTooltipUpdate() {
         const logsFromSelectedTags = document.getElementById('logsFromSelectedTags');
+        const logsInFile = document.getElementById('logsInFile');
         if (logsFromSelectedTags) {
             logsFromSelectedTags.textContent = this.filteredLogsLength;
+        }
+        if (logsInFile) {
+            logsInFile.textContent = this.parsedLogs.length;
+        }
+    }
+
+    updateTooltipChart() {
+        const logsFromSelectedTags = document.getElementById('logsFromSelectedTags');
+        const logsInFile = document.getElementById('logsInFile');
+        if (logsFromSelectedTags) {
+            logsFromSelectedTags.textContent = this.filteredLogsLength;
+        }
+        if (logsInFile) {
+            logsInFile.textContent = this.parsedLogs.length;
         }
     }
 

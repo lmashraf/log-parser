@@ -57,34 +57,4 @@ class Tooltip {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const tooltipElement = document.getElementById('logSummary');
-    const parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
-    const occurrences = JSON.parse(localStorage.getItem('occurrences'));
-    const percentages = JSON.parse(localStorage.getItem('percentages'));
-
-    if (tooltipElement && parsedLogs) {
-        const tooltip = new Tooltip(tooltipElement);
-
-        const tagItems = document.querySelectorAll('.tag-item');
-        tagItems.forEach(tagItem => {
-            tagItem.addEventListener('mouseenter', () => {
-                const logLevel = tagItem.dataset.tag.toUpperCase();
-                const logData = {
-                    logsInFile: parsedLogs.length,
-                    logsFromSelectedTags: parsedLogs.length,
-                    tagElement: tagItem.cloneNode(true),
-                    occurrences: percentages[logLevel] !== undefined ? percentages[logLevel] : 0,
-                    count: occurrences[logLevel] !== undefined ? occurrences[logLevel] : 0
-                };
-                tooltip.updateTooltip(logData);
-            });
-
-            tagItem.addEventListener('mouseleave', () => {
-                tooltip.hideTooltip();
-            });
-        });
-    }
-});
-
 export default Tooltip;

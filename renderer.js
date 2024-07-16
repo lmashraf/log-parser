@@ -6,8 +6,6 @@ import './components/tag.js';
 import './components/chart.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('DOM fully loaded and parsed');
-
     try {
         // Check which page is loaded
         if (window.location.pathname.endsWith('main.html') || window.location.pathname === '/') {

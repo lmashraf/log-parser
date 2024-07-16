@@ -54,6 +54,8 @@ function processLogData(data, format, source) {
     const logLines = data.split('\n');
     const parsedLogs = logLines.map(line => parseLog(line, format)).filter(log => log !== null);
 
+    console.log('Parsed Logs:', parsedLogs); // Debug statement
+
     const selectedOptions = {
         sourceInput: source,
         formatSelectLabel: format
@@ -61,10 +63,8 @@ function processLogData(data, format, source) {
 
     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
     localStorage.setItem('parsedLogs', JSON.stringify(parsedLogs));
-
-    console.log('Stored selectedOptions:', selectedOptions);
-    console.log('Stored parsedLogs:', parsedLogs);
 }
+
 
 export function addMagicButtonEventListener() {
     const parseButton = document.getElementById('parseButton');

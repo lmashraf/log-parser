@@ -43,6 +43,6 @@ ipcMain.handle('get-dropdown-options', async () => {
 // Add the new IPC listener for resizing the window
 ipcMain.on('resize-window', (event, { width, height }) => {
     if (mainWindow) {
-        mainWindow.setBounds({ x: 0, y: 0, width, height }); // Adjust position to (0, 0) and resize
+        mainWindow.setBounds({ x: 0, y: 0, width, height });
     }
 });
