@@ -3,7 +3,6 @@ let totalLogsLength = 0;
 
 export function forwardSelectedOptions() {
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
-    console.log('Forwarding selected options to the viewer:', selectedOptions);
 
     if (selectedOptions) {
         document.getElementById('dataSource').value = selectedOptions.sourceInput;
@@ -17,8 +16,8 @@ export function forwardParsedLogs() {
 
     if (parsedLogs) {
         localStorage.setItem('forwardedLogs', JSON.stringify(parsedLogs));
-        totalLogsLength = parsedLogs.length; // Set totalLogsLength to the total logs length initially
-        filteredLogsLength = parsedLogs.length; // Set filteredLogsLength to the total logs length initially
+        totalLogsLength = parsedLogs.length;
+        filteredLogsLength = parsedLogs.length;
     }
 
     processLogs(parsedLogs);
@@ -26,13 +25,12 @@ export function forwardParsedLogs() {
 
 function processLogs(logs) {
     if (logs) {
-        console.log('Processing logs. Total logs:', logs.length);
-        totalLogsLength = logs.length; // Ensure total number of logs is set
-        renderChart(logs);
         updateTooltipData(logs);
-        filteredLogsLength = updateTable(); // Ensure the table is populated
 
-        // Ensure tooltip is updated with the correct log counts
+        filteredLogsLength = updateTable();
+        totalLogsLength = logs.length;
+
+        // Update tooltip with the correct log counts
         const logsFromSelectedTags = document.getElementById('logsFromSelectedTags');
         const logsInFile = document.getElementById('logsInFile');
         if (logsFromSelectedTags) {
@@ -48,7 +46,7 @@ function processLogs(logs) {
 
 export function getParsedLogs() {
     const parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
-    console.log('Getting parsed logs. Total logs:', parsedLogs.length);
+
     return parsedLogs;
 }
 
@@ -62,7 +60,7 @@ export function calculateOccurrences(logs) {
             occurrences[logLevel] = 1;
         }
     });
-    console.log('Calculated occurrences:', occurrences);
+
     return occurrences;
 }
 
@@ -71,13 +69,12 @@ export function calculatePercentages(occurrences, totalLogs) {
     for (const logLevel in occurrences) {
         percentages[logLevel] = (occurrences[logLevel] / totalLogs) * 100;
     }
-    console.log('Calculated percentages:', percentages);
+
     return percentages;
 }
 
 // Updates the tooltip's data based on the parsed logs
 export function updateTooltipData(logs) {
-    console.log('Updating the tooltip with total logs:', logs.length);
     const occurrences = calculateOccurrences(logs);
     const percentages = calculatePercentages(occurrences, logs.length);
 
@@ -93,10 +90,13 @@ export function updateTable() {
 
     const parsedLogs = getParsedLogs();
     const disabledTags = Array.from(document.querySelectorAll('.tag-item.disabled')).map(tag => tag.dataset.tag.toUpperCase());
-    console.log('Disabled tags:', disabledTags);
 
-    const filteredLogs = parsedLogs.filter(log => !disabledTags.includes(log.logLevel.toUpperCase()));
-    console.log('Filtered logs count:', filteredLogs.length); // Debug statement
+    // Remove duplicate tags in the disabledTags array
+    const uniqueDisabledTags = [...new Set(disabledTags)];
+
+    console.log('Unique disabled tags:', uniqueDisabledTags);
+
+    const filteredLogs = parsedLogs.filter(log => !uniqueDisabledTags.includes(log.logLevel.toUpperCase()));
 
     filteredLogs.forEach(log => {
         const row = document.createElement('tr');
@@ -125,16 +125,7 @@ export function updateTable() {
         logTableBody.appendChild(row);
     });
 
-    console.log("Updated the table with filtered logs:", filteredLogs.length); // Debug statement
     filteredLogsLength = filteredLogs.length;
-    console.log('Updated filteredLogsLength:', filteredLogsLength); // Debug statement
-    return filteredLogsLength; // Return the number of filtered logs
-}
 
-export function getFilteredLogsLength() {
     return filteredLogsLength;
-}
-
-export function renderChart(logs) {
-    console.log("Rendering the chart with total logs:", logs.length);
 }

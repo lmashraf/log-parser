@@ -6,7 +6,7 @@ export async function populateDropdownOptions() {
         console.error('Dropdown element not found');
         return;
     }
-    console.log('Requesting dropdown options');
+
     try {
         const options = await window.electron.getDropdownOptions();
         console.log('Received dropdown options:', options);
@@ -30,7 +30,6 @@ function initialiseDropdownBox() {
         if (!select.classList.contains('initialised')) {
             new DropdownBox(select);
             select.classList.add('initialised');
-            console.log('Dropdown Box initialised for:', select);
         }
     });
 }

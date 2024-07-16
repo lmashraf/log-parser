@@ -54,7 +54,7 @@ function processLogData(data, format, source) {
     const logLines = data.split('\n');
     const parsedLogs = logLines.map(line => parseLog(line, format)).filter(log => log !== null);
 
-    console.log('Parsed Logs:', parsedLogs); // Debug statement
+    console.log('Parsed Logs:', parsedLogs);
 
     const selectedOptions = {
         sourceInput: source,
