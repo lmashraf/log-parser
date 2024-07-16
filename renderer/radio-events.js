@@ -8,49 +8,70 @@ export function addRadioEventListeners() {
 function handleRadioChange(event) {
     const inputContainer = document.getElementById('inputContainer');
     const selectedValue = event.target.value;
-    console.log('Selected radio button:', selectedValue);
-
-    // Clear the current input container content
     inputContainer.innerHTML = '';
 
-    // Add new content based on selected radio button
-    if (selectedValue === 'url') {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'sourceInput';
-        input.placeholder = 'Insert your URL here...';
-        input.className = 'dynamic-input'; // Add class for consistent styling
+    const input = createInputElement(selectedValue);
+    if (input) {
         inputContainer.appendChild(input);
-    } else if (selectedValue === 'file') {
-        const label = document.createElement('label');
-        label.className = 'file-input-label';
-        label.setAttribute('data-text', 'No file chosen');
-
-        const inputText = document.createElement('span');
-        inputText.className = 'file-text';
-        inputText.textContent = 'No file chosen';
-
-        const browseButton = document.createElement('span');
-        browseButton.className = 'browse-button';
-        browseButton.textContent = 'Browse';
-
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.id = 'sourceInput';
-        input.className = 'dynamic-input'; // Add class for consistent styling
-        input.addEventListener('change', function () {
-            inputText.textContent = input.files[0] ? input.files[0].name : 'No file chosen';
-        });
-
-        label.appendChild(input);
-        label.appendChild(inputText);
-        label.appendChild(browseButton);
-        inputContainer.appendChild(label);
-    } else if (selectedValue === 'text') {
-        const textarea = document.createElement('textarea');
-        textarea.id = 'sourceInput';
-        textarea.placeholder = 'Paste your text log here...';
-        textarea.className = 'dynamic-textarea'; // Add class for consistent styling
-        inputContainer.appendChild(textarea);
     }
+}
+
+function createInputElement(selectedValue) {
+    let element;
+    switch (selectedValue) {
+        case 'url':
+            element = createTextInput('Insert your URL here...');
+            break;
+        case 'file':
+            element = createFileInput();
+            break;
+        case 'text':
+            element = createTextArea('Paste your text log here...');
+            break;
+    }
+    return element;
+}
+
+function createTextInput(placeholder) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'sourceInput';
+    input.placeholder = placeholder;
+    input.className = 'dynamic-input';
+    return input;
+}
+
+function createFileInput() {
+    const label = document.createElement('label');
+    label.className = 'file-input-label';
+    label.setAttribute('data-text', 'No file chosen');
+
+    const inputText = document.createElement('span');
+    inputText.className = 'file-text';
+    inputText.textContent = 'No file chosen';
+
+    const browseButton = document.createElement('span');
+    browseButton.className = 'browse-button';
+    browseButton.textContent = 'Browse';
+
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.id = 'sourceInput';
+    input.className = 'dynamic-input';
+    input.addEventListener('change', function () {
+        inputText.textContent = input.files[0] ? input.files[0].name : 'No file chosen';
+    });
+
+    label.appendChild(input);
+    label.appendChild(inputText);
+    label.appendChild(browseButton);
+    return label;
+}
+
+function createTextArea(placeholder) {
+    const textarea = document.createElement('textarea');
+    textarea.id = 'sourceInput';
+    textarea.placeholder = placeholder;
+    textarea.className = 'dynamic-textarea';
+    return textarea;
 }

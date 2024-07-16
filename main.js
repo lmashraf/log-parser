@@ -23,7 +23,9 @@ function createWindow() {
 
     mainWindow.loadFile('main.html');
     // debug
-    mainWindow.webContents.openDevTools();
+    if (process.env.NODE_ENV !== 'production') {
+        mainWindow.webContents.openDevTools();
+    }
 }
 
 app.whenReady().then(createWindow);
@@ -35,14 +37,19 @@ app.on('window-all-closed', () => {
 });
 
 ipcMain.handle('get-dropdown-options', async () => {
-    const configPath = path.join(__dirname, './properties/log-formats.json');
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-    return config.dropdownOptions;
+    const configPath = path.resolve(__dirname, './properties/log-formats.json');
+    try {
+        const config = JSON.parse(await fs.promises.readFile(configPath, 'utf-8'));
+        return config.dropdownOptions;
+    } catch (error) {
+        console.error('Error reading config file', error);
+        throw error;
+    }
 });
 
 // Add the new IPC listener for resizing the window
 ipcMain.on('resize-window', (event, { width, height }) => {
     if (mainWindow) {
-        mainWindow.setBounds({ x: 0, y: 0, width, height }); // Adjust position to (0, 0) and resize
+        mainWindow.setBounds({ x: 0, y: 0, width, height });
     }
 });

@@ -1,3 +1,6 @@
+let filteredLogsLength = 0;
+let totalLogsLength = 0;
+
 export function forwardSelectedOptions() {
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
 
@@ -9,24 +12,35 @@ export function forwardSelectedOptions() {
 
 export function forwardParsedLogs() {
     const parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
+    console.log('Forwarding parsed logs to the viewer. Total logs:', parsedLogs.length);
 
     if (parsedLogs) {
-        console.log('Forwarding parsedLogs:', parsedLogs);
         localStorage.setItem('forwardedLogs', JSON.stringify(parsedLogs));
+        totalLogsLength = parsedLogs.length;
+        filteredLogsLength = parsedLogs.length;
     }
 
     processLogs(parsedLogs);
 }
 
 function processLogs(logs) {
-    console.log("Calling displayLogs with logs:", logs);
-
-    if (logs) {
-        renderChart(logs);
+    if (logs && Array.isArray(logs)) {
         updateTooltipData(logs);
-        populateTable(logs);
+
+        filteredLogsLength = updateTable();
+        totalLogsLength = logs.length;
+
+        // Update tooltip with the correct log counts
+        const logsFromSelectedTags = document.getElementById('logsFromSelectedTags');
+        const logsInFile = document.getElementById('logsInFile');
+        if (logsFromSelectedTags) {
+            logsFromSelectedTags.textContent = filteredLogsLength;
+        }
+        if (logsInFile) {
+            logsInFile.textContent = totalLogsLength;
+        }
     } else {
-        console.error('No logs provided to displayLogs');
+        console.error('No logs provided to processLogs');
     }
 }
 
@@ -44,6 +58,7 @@ export function calculateOccurrences(logs) {
             occurrences[logLevel] = 1;
         }
     });
+
     return occurrences;
 }
 
@@ -52,12 +67,12 @@ export function calculatePercentages(occurrences, totalLogs) {
     for (const logLevel in occurrences) {
         percentages[logLevel] = (occurrences[logLevel] / totalLogs) * 100;
     }
+
     return percentages;
 }
 
 // Updates the tooltip's data based on the parsed logs
-function updateTooltipData(logs) {
-    console.log("Updating the tooltip with logs:", logs);
+export function updateTooltipData(logs) {
     const occurrences = calculateOccurrences(logs);
     const percentages = calculatePercentages(occurrences, logs.length);
 
@@ -66,18 +81,22 @@ function updateTooltipData(logs) {
     localStorage.setItem('percentages', JSON.stringify(percentages));
 }
 
-
-// Renders the chart based on the parsed logs
-function renderChart(logs) {
-    console.log("Rendering the chart with logs:", logs);
-}
-
-// Populates the table and renders its content based on the parsed logs
-function populateTable(logs) {
+// Function to update the table based on the current state of the tags
+export function updateTable() {
     const logTableBody = document.getElementById('logTableBody');
     logTableBody.innerHTML = ''; // Clear any existing rows
 
-    logs.forEach(log => {
+    const parsedLogs = getParsedLogs();
+    const disabledTags = Array.from(document.querySelectorAll('.tag-item.disabled')).map(tag => tag.dataset.tag.toUpperCase());
+
+    // Remove duplicate tags in the disabledTags array
+    const uniqueDisabledTags = [...new Set(disabledTags)];
+
+    console.log('Unique disabled tags:', uniqueDisabledTags);
+
+    const filteredLogs = parsedLogs.filter(log => !uniqueDisabledTags.includes(log.logLevel.toUpperCase()));
+
+    filteredLogs.forEach(log => {
         const row = document.createElement('tr');
 
         // Create and append Timestamp cell
@@ -104,5 +123,7 @@ function populateTable(logs) {
         logTableBody.appendChild(row);
     });
 
-    console.log("Populated the table with logs:", logs.length);
+    filteredLogsLength = filteredLogs.length;
+
+    return filteredLogsLength;
 }

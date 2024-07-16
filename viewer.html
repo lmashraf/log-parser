@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="styles/tooltip.css">
     <script src="components/tag.js" type="module"></script> <!-- Include tag.js -->
     <link rel="stylesheet" type="text/css" href="styles/tag.css"> <!-- Include tag.css -->
+    <script src="components/chart.js" type="module"></script> <!-- Include chart.js -->
+    <link rel="stylesheet" type="text/css" href="styles/chart.css"> <!-- Include chart.css -->
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -41,8 +43,8 @@
         <div class="combined-container">
             <div class="log-analysis-container">
                 <div class="chart-section">
-                    <div class="chart-container">
-                        <canvas id="logChart"></canvas>
+                    <div class="chart-container" id="chartContainer">
+                        <!-- Bar containers will be generated here -->
                     </div>
                     <div class="legend-container">
                         <div class="tag-item" data-tag="alert">

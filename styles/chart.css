@@ -1,0 +1,29 @@
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 256px;
+    background-color: #FAFAFA;
+    border: 1px solid #D3D3D3;
+    box-sizing: border-box;
+    padding: 20px 0 20px 0;
+}
+
+.bar {
+    position: relative;
+    width: 16px;
+    background-color: #E5E5E5;
+    border: 1px solid #B1B4BB;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.bar-inner {
+    width: 16px;
+    display: flex;
+    background-color: #D3D3D3;
+    border: 1px solid #495267;
+    border-radius: 15px;
+}
