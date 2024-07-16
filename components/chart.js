@@ -1,5 +1,5 @@
 import Tooltip from '../components/tooltip.js';
-import { calculateOccurrences, calculatePercentages, updateTable, getFilteredLogsLength, getParsedLogs } from '../renderer/process-data.js';
+import { calculateOccurrences, calculatePercentages, updateTable } from '../renderer/process-data.js';
 import Tag from '../components/tag.js';
 
 export const LOG_LEVEL_COLORS = {
@@ -7,10 +7,11 @@ export const LOG_LEVEL_COLORS = {
     ERROR: '#FC1149',
     INFO: '#0ED0FF',
     NOTICE: '#0ED096',
-    CRIT: '#495267',
+    CRIT: '#AD4AD0',
     DEBUG: '#87DA76',
     WARN: '#FCA311',
-    DEFAULT: '#D3D3D3'
+    DEFAULT: '#FAFAFA',
+    DISABLED: '#B1B4BB'
 };
 
 const LOG_LEVEL_ORDER = ['ALERT', 'ERROR', 'INFO', 'NOTICE', 'CRIT', 'DEBUG', 'WARN'];
@@ -52,7 +53,7 @@ class Chart {
 
             const barHeight = (this.percentages[logLevel] / 100) * 100;
             barInner.style.height = `${barHeight > 0 ? barHeight : 2}%`;
-            barInner.style.backgroundColor = this.percentages[logLevel] > 0 ? (LOG_LEVEL_COLORS[logLevel] || LOG_LEVEL_COLORS.DEFAULT) : LOG_LEVEL_COLORS.DEFAULT;
+            barInner.style.backgroundColor = this.percentages[logLevel] > 0 ? (LOG_LEVEL_COLORS[logLevel] || LOG_LEVEL_COLORS.DEFAULT) : LOG_LEVEL_COLORS.DISABLED;
 
             bar.appendChild(barInner);
             this.chartContainer.appendChild(bar);
@@ -62,6 +63,21 @@ class Chart {
                 this.toggleBar(event, logLevel);
             });
         });
+    }
+
+    createTagElement(logLevel) {
+        const tagItem = document.createElement('div');
+        tagItem.className = 'tag-item';
+        const tagIcon = document.createElement('img');
+        tagIcon.src = `assets/tag-${logLevel.toLowerCase()}.svg`;
+        tagIcon.alt = logLevel;
+        tagIcon.className = 'tag-icon';
+        tagItem.appendChild(tagIcon);
+        const tagLabel = document.createElement('span');
+        tagLabel.className = 'tag-label';
+        tagLabel.textContent = logLevel;
+        tagItem.appendChild(tagLabel);
+        return tagItem;
     }
 
     toggleBar(event, logLevel) {
@@ -81,8 +97,6 @@ class Chart {
     handleHover(event) {
         const bars = this.chartContainer.children;
         const barWidth = bars[0].offsetWidth;
-
-        console.log('Hover event triggered, filteredLogsLength:', this.filteredLogsLength);
 
         Array.from(bars).forEach((bar, index) => {
             const barX = bar.getBoundingClientRect().left;
@@ -114,8 +128,6 @@ class Chart {
     }
 
     handleHoverTag(tagElement) {
-        console.log('Hover tag event triggered, filteredLogsLength:', this.filteredLogsLength);
-
         const logLevel = tagElement.dataset.tag.toUpperCase();
         const tooltipElement = document.getElementById('logSummary');
         const logData = {
@@ -149,21 +161,6 @@ class Chart {
         if (logsInFile) {
             logsInFile.textContent = this.parsedLogs.length;
         }
-    }
-
-    createTagElement(logLevel) {
-        const tagItem = document.createElement('div');
-        tagItem.className = 'tag-item';
-        const tagIcon = document.createElement('img');
-        tagIcon.src = `assets/tag-${logLevel.toLowerCase()}.svg`;
-        tagIcon.alt = logLevel;
-        tagIcon.className = 'tag-icon';
-        tagItem.appendChild(tagIcon);
-        const tagLabel = document.createElement('span');
-        tagLabel.className = 'tag-label';
-        tagLabel.textContent = logLevel;
-        tagItem.appendChild(tagLabel);
-        return tagItem;
     }
 }
 
