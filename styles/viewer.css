@@ -34,8 +34,9 @@ body {
 }
 
 .header-container img {
-    width: 30px;
+    width: 120px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 #container {
@@ -160,4 +161,8 @@ h2 {
 .log-table th:nth-child(3),
 .log-table td:nth-child(3) {
     width: auto; /* Take remaining space for Message */
+}
+
+.magic-button {
+    margin-left: 20px;
 }
