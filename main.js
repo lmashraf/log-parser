@@ -11,15 +11,24 @@ let mainWindow;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 1400,
-        height: 900,
+        width: 1200,
+        height: 740,
         autoHideMenuBar: true,
+        title: "Log Parser",
+        thickFrame: true,
+        frame: false,
+        transparent: true,
+        show: true,
+        roundedCorners: true,
+        fullscreenable: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             enableRemoteModule: false,
         }
     });
+
+    initialBounds = mainWindow.getBounds();
 
     mainWindow.loadFile('main.html');
     // debug
@@ -50,6 +59,13 @@ ipcMain.handle('get-dropdown-options', async () => {
 // Add the new IPC listener for resizing the window
 ipcMain.on('resize-window', (event, { width, height }) => {
     if (mainWindow) {
-        mainWindow.setBounds({ x: 0, y: 0, width, height });
+        const [x, y] = mainWindow.getPosition();
+        mainWindow.setBounds({ x, y: 50, width, height });
+    }
+});
+
+ipcMain.on('restore-initial-size', (event) => {
+    if (mainWindow) {
+        mainWindow.setBounds(initialBounds);
     }
 });

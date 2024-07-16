@@ -1,8 +1,14 @@
 import parseLog from '../parsers/log-parser.js';
 
 function navigateToViewer() {
-    window.electron.send('resize-window', { width: 1400, height: screen.height });
+    const newHeight = screen.height - 100;
+    window.electron.send('resize-window', { width: 1450, height: newHeight });
     window.location.href = 'viewer.html';
+}
+
+function navigateToMainWindow() {
+    window.electron.send('restore-initial-size');
+    window.location.href = 'main.html'; // Assuming 'main.html' is your main window's HTML file
 }
 
 async function fetchLogData(url, formatLabel, source) {
@@ -96,6 +102,7 @@ export function addReloadButtonEventListener() {
     const reloadButton = document.getElementById('reloadButton');
     if (reloadButton) {
         reloadButton.addEventListener('click', () => {
+            window.electron.send('restore-initial-size');
             window.location.href = 'main.html';
         });
     }

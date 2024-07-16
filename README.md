@@ -58,4 +58,6 @@ This project is licensed under the MIT Licence.
 
 Special thanks to [L. Mari](https://www.behance.net/gallery/179218877/Log-Parser-Design-Project) for creating the user interface design of the Log Parser application.
 
+[See FIGMA Design HERE](https://www.behance.net/gallery/179218877/Log-Parser-Design-Project)
+
 **Happy log parsing!**
