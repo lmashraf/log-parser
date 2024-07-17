@@ -78,7 +78,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/*.AppImage
-          asset_name: log-parser-linux.AppImage
+          asset_name: log-parser-linux-${{ github.run_number }}.AppImage
           asset_content_type: application/octet-stream
 
       - name: Upload Release Asset for Windows
@@ -88,5 +88,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/*.exe
-          asset_name: log-parser-windows.exe
+          asset_name: log-parser-windows-${{ github.run_number }}.exe
           asset_content_type: application/octet-stream
