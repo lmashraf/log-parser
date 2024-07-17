@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
-    "package": "electron-builder --dir"
+    "build": "cross-env NODE_ENV=production electron-builder",
+    "package": "cross-env NODE_ENV=production electron-builder --dir"
   },
   "keywords": [],
   "author": "A. Lebrazi & L. Mari",
@@ -16,7 +16,8 @@
   },
   "devDependencies": {
     "electron": "^31.2.0",
-    "electron-builder": "^22.14.5"
+    "electron-builder": "^22.14.5",
+    "cross-env": "^7.0.3"
   },
   "build": {
     "appId": "unlimited.h.works.log-parser",

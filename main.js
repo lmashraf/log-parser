@@ -4,9 +4,13 @@ const fs = require('fs');
 
 // Electron Reload - Only in Development Mode
 if (process.env.NODE_ENV !== 'production') {
-    require('electron-reload')(__dirname, {
-        electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-    });
+    try {
+        require('electron-reload')(__dirname, {
+            electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+        });
+    } catch (err) {
+        console.log('Failed to load electron-reload:', err);
+    }
 }
 
 let mainWindow;
