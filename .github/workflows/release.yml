@@ -45,16 +45,20 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: log-parser-ubuntu-latest
+          path: artifacts
 
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
+          name: log-parser-windows-latest
           path: artifacts
 
-      - name: List directory contents
-        run: ls -R artifacts
+      - name: List all files in artifacts directory
+        run: find artifacts
 
       - name: Create Release
         id: create_release
@@ -76,7 +80,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: artifacts/log-parser-ubuntu-latest/*.AppImage
+          asset_path: artifacts/*.AppImage
           asset_name: log-parser-linux-${{ github.run_number }}.AppImage
           asset_content_type: application/octet-stream
 
@@ -86,6 +90,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: artifacts/log-parser-windows-latest/*.exe
+          asset_path: artifacts/*.exe
           asset_name: log-parser-windows-${{ github.run_number }}.exe
           asset_content_type: application/octet-stream
