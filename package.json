@@ -6,24 +6,20 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "package": "electron-builder --dir",
-    "dist": "electron-builder --mac --win --linux"
+    "package": "electron-builder --dir"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "A. Lebrazi & L. Mari",
+  "license": "MIT",
   "dependencies": {
-    "electron": "^31.2.0",
     "electron-reload": "^2.0.0-alpha.1"
   },
   "devDependencies": {
+    "electron": "^31.2.0",
     "electron-builder": "^22.14.5"
   },
   "build": {
     "appId": "unlimited.h.works.log-parser",
-    "mac": {
-      "target": "dmg"
-    },
     "win": {
       "target": "nsis"
     },
