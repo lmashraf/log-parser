@@ -5,12 +5,11 @@
     font-size: 14px;
     color: #14213D;
     text-align: left;
-    width: 300px;
+    width: 350px;
     box-sizing: border-box;
     position: relative;
-    margin-left: 20px;
-}
 
+}
 
 .tooltip p {
     margin: 5px 0;
