@@ -26,13 +26,13 @@ jobs:
       - name: Build LogParser app on Windows
         if: matrix.os == 'windows-latest'
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx electron-builder --win --publish=never
 
       - name: Build LogParser app on Linux
         if: matrix.os == 'ubuntu-latest'
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx electron-builder --linux --publish=never
 
       - name: Upload artifact
@@ -47,17 +47,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifacts
+      - name: Download Linux artifacts
         uses: actions/download-artifact@v4
         with:
           name: log-parser-ubuntu-latest
-          path: dist/*.AppImage
+          path: dist/log-parser-*.AppImage
 
-      - name: Download artifacts
+      - name: Download Windows artifacts
         uses: actions/download-artifact@v4
         with:
           name: log-parser-windows-latest
-          path: dist/*.exe
+          path: dist/log-parser-*.exe
 
       - name: Create Release
         id: create_release
@@ -65,7 +65,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: v1.0.${{ github.run_number }} # Use a more conventional tag format
+          tag_name: v1.0.${{ github.run_number }} # Ensure valid tag format
           release_name: Release ${{ github.run_number }}
           body: |
             ## Changes
@@ -79,7 +79,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/*.AppImage
+          asset_path: dist/log-parser-*.AppImage
           asset_name: log-parser-linux.AppImage
           asset_content_type: application/octet-stream
 
@@ -89,6 +89,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/*.exe
+          asset_path: dist/log-parser-*.exe
           asset_name: log-parser-windows.exe
           asset_content_type: application/octet-stream
