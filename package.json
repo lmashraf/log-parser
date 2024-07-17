@@ -28,20 +28,6 @@
     },
     "directories": {
       "output": "dist"
-    },
-    "files": [
-      "main.js",
-      "package.json",
-      "node_modules/**/*",
-      "dist/**/*",
-      "assets/**/*",
-      "components/**/*",
-      "parsers/**/*",
-      "properties/**/*",
-      "renderer/**/*",
-      "styles/**/*",
-      "main.html",
-      "preload.js"
-    ]
+    }
   }
 }
