@@ -1,4 +1,4 @@
-# Log Parser
+![logo](https://github.com/lmashraf/log-parser/blob/master/assets/logo.png?raw=true)
 
 Log Parser is an application that allows users to easily upload, parse, filter, visualise, and export log files in various formats. It provides an intuitive user interface (UI) that enables both technical and non-technical users to efficiently analyse log data without requiring any specialised knowledge.
 
@@ -10,6 +10,17 @@ Log Parser is an application that allows users to easily upload, parse, filter, 
 - **Detailed View**: Detailed log entries in a tabular format.
 - **Summary**: Overview of log metrics like size and entry count.
 - **Export**: Option to export parsed log content.
+
+
+## Installation
+
+### Login Screen
+![login](https://github.com/lmashraf/log-parser/blob/master/assets/logparser_login.png?raw=true)
+
+### Log Viewer
+
+![viewer](https://github.com/lmashraf/log-parser/blob/master/assets/logparser_viewer.png?raw=true)
+
 
 ## Getting Started
 
