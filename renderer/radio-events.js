@@ -23,7 +23,7 @@ function createInputElement(selectedValue) {
             element = createTextInput('Insert your URL here...');
             break;
         case 'file':
-            element = createFileInput();
+            element = createFileInput('Click here to browse your file..');
             break;
         case 'text':
             element = createTextArea('Paste your text log here...');
@@ -41,14 +41,14 @@ function createTextInput(placeholder) {
     return input;
 }
 
-function createFileInput() {
+function createFileInput(placeholder) {
     const label = document.createElement('label');
     label.className = 'file-input-label';
-    label.setAttribute('data-text', 'No file chosen');
+    label.setAttribute('data-text', placeholder);
 
     const inputText = document.createElement('span');
     inputText.className = 'file-text';
-    inputText.textContent = 'No file chosen';
+    inputText.textContent = placeholder;
 
     const browseButton = document.createElement('span');
     browseButton.className = 'browse-button';
@@ -59,7 +59,7 @@ function createFileInput() {
     input.id = 'sourceInput';
     input.className = 'dynamic-input';
     input.addEventListener('change', function () {
-        inputText.textContent = input.files[0] ? input.files[0].name : 'No file chosen';
+        inputText.textContent = input.files[0] ? input.files[0].name : placeholder;
     });
 
     label.appendChild(input);

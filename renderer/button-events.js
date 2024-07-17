@@ -1,7 +1,7 @@
 import parseLog from '../parsers/log-parser.js';
 
 function navigateToViewer() {
-    const newHeight = screen.height - 100;
+    const newHeight = screen.height - 78;
     window.electron.send('resize-window', { width: 1450, height: newHeight });
     window.location.href = 'viewer.html';
 }

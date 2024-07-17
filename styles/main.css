@@ -38,12 +38,15 @@ body {
     margin-right: 20px;
 }
 
+.draggable {
+    -webkit-app-region: drag; /* Make the header draggable */
+}
+
 /* Container styles */
 #container {
     background-color: #FFFFFF;
     color: #0C1C32;
     padding: 40px;
-    width: 100%;
     max-width: 900px;
     margin-top: 30px;
     text-align: center;
@@ -172,29 +175,19 @@ input[type="text"]::placeholder {
     justify-content: space-between;
     border: 1px solid #0C1C32; /* Ensure the border colour matches the design */
     padding: 10px;
-    font-size: 16px;
     font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    color: #0C1C32;
+    font-style: normal;
+    font-size: 16px;
     background-color: #FAFAFA;
+    color: #7D8391;
     box-sizing: border-box;
     margin-top: 20px;
     width: 100%;
+    height: 64px;
 }
 
 .file-input-label .browse-button {
-    background-color: #0C1C32;
-    color: #FAFAFA;
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-}
-
-.file-input-label .browse-button:hover {
-    background-color: #0B1A2D;
+    display: none;
 }
 
 .file-input-label input[type="file"] {

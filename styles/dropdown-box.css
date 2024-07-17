@@ -64,7 +64,10 @@
 
 .select-items div:hover {
     background-color: #B5E48C;
-    color: #FAFAFA;
+    color: #14213D;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 
 .select-items .selected {
