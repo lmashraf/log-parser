@@ -11,6 +11,20 @@
     white-space: nowrap;
 }
 
+.tag-item:hover {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #FAFAFA;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #FAFAFA;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+
 .tag-icon {
     width: 16px;
     height: 16px;

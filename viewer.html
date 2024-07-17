@@ -43,8 +43,38 @@
         <hr>
         <div class="combined-container">
             <div class="log-analysis-container">
+                <div class="tooltip" id="logSummary">
+                    <div class="section line">
+                        <h3>File Log Summary</h3>
+                    </div>
+                    <div class="section line">
+                        <p>Logs in file: <span id="logsInFile">0</span></p>
+                        <p>Logs from selected tags: <span id="logsFromSelectedTags">0</span></p>
+                    </div>
+                    <div id="hoverDetails">
+                        <div id="logIconContainer"></div>
+                        <p id="logOccurrencesContainer">Occurrences: <span id="logOccurrences"></span></p>
+                        <p id="logCountContainer">Count: <span id="logCount"></span></p>
+                    </div>
+                    <p id="defaultMessage">Hover over a bar for detailed statistics.</p>
+                </div>
                 <div class="chart-section">
                     <div class="chart-container" id="chartContainer">
+                        <div class="chart-background"></div>
+                        <div class="y-axis-labels-left">
+                            <span class="y-axis-label">100</span>
+                            <span class="y-axis-label">75</span>
+                            <span class="y-axis-label">50</span>
+                            <span class="y-axis-label">25</span>
+                            <span class="y-axis-label">0</span>
+                        </div>
+                        <div class="y-axis-labels-right">
+                            <span class="y-axis-label">100</span>
+                            <span class="y-axis-label">75</span>
+                            <span class="y-axis-label">50</span>
+                            <span class="y-axis-label">25</span>
+                            <span class="y-axis-label">0</span>
+                        </div>
                         <!-- Bar containers will be generated here -->
                     </div>
                     <div class="legend-container">
@@ -77,21 +107,6 @@
                             <span class="tag-label">WARN</span>
                         </div>
                     </div>
-                </div>
-                <div class="tooltip" id="logSummary">
-                    <div class="section line">
-                        <h3>File Log Summary</h3>
-                    </div>
-                    <div class="section line">
-                        <p>Logs in file: <span id="logsInFile">0</span></p>
-                        <p>Logs from selected tags: <span id="logsFromSelectedTags">0</span></p>
-                    </div>
-                    <div id="hoverDetails">
-                        <div id="logIconContainer"></div>
-                        <p id="logOccurrencesContainer">Occurrences: <span id="logOccurrences"></span></p>
-                        <p id="logCountContainer">Count: <span id="logCount"></span></p>
-                    </div>
-                    <p id="defaultMessage">Hover over a bar for detailed statistics.</p>
                 </div>
             </div>
             <div class="log-table">

@@ -1,16 +1,57 @@
 .chart-container {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: flex-start;
     height: 256px;
     background-color: #FAFAFA;
     border: 1px solid #D3D3D3;
     box-sizing: border-box;
-    padding: 20px 0 20px 0;
+    padding: 20px 0;
+    margin-left: 140px;
+    width: 80%;
+    position: relative;
+    left: 40px;
+    right: 40px;
 }
 
+
+.chart-background {
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    pointer-events: none;
+    border-bottom: 1px dotted #CBD5E0;
+    background-image: linear-gradient(to bottom, #CBD5E0 1px, transparent 1px);
+    background-size: 100% 25%;
+}
+
+.y-axis-labels-left,
+.y-axis-labels-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none; /* Ensure it doesn't interfere with interactions */
+}
+
+.y-axis-labels-left {
+    left: -40px; /* Move labels outside the chart border */
+}
+
+.y-axis-labels-right {
+    right: -40px; /* Move labels outside the chart border */
+}
+
+.y-axis-label {
+    color: #B1B4BB; /* Match text color */
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
 .chart-section {
-    width: 60%;
+    width: 100%;
 }
 
 .bar {
@@ -22,6 +63,7 @@
     height: 100%;
     display: flex;
     align-items: flex-end;
+    cursor: pointer;
 }
 
 .bar-inner {

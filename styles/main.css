@@ -98,6 +98,11 @@ input[type="radio"] {
     accent-color: #322e0c;
 }
 
+input[type="radio"]:hover {
+    margin-right: 5px;
+    accent-color: #FFEB83;
+}
+
 /* Container styles */
 .load-from-container {
     height: 80px;

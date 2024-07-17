@@ -19,12 +19,16 @@ const LOG_LEVEL_ORDER = ['ALERT', 'ERROR', 'INFO', 'NOTICE', 'CRIT', 'DEBUG', 'W
 class Chart {
     constructor(containerId) {
         this.chartContainer = document.getElementById(containerId);
+        this.bars = this.chartContainer.getElementsByClassName('bar'); // Select only bar elements
         this.parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
         this.occurrences = calculateOccurrences(this.parsedLogs);
         this.percentages = calculatePercentages(this.occurrences, this.parsedLogs.length);
         this.filteredLogsLength = this.parsedLogs.length; // Initialize with the total log length
         this.createBars();
-        this.chartContainer.addEventListener('mousemove', this.handleHover.bind(this));
+        Array.from(this.bars).forEach(bar => {
+            bar.addEventListener('mousemove', this.handleHover.bind(this));
+            bar.addEventListener('mouseleave', this.handleHover.bind(this));
+        });
 
         const tagElements = document.querySelectorAll('.tag-item');
         tagElements.forEach(element => {
@@ -43,6 +47,7 @@ class Chart {
 
         this.initialTooltipUpdate(); // Initial tooltip update
     }
+
 
     createBars() {
         LOG_LEVEL_ORDER.forEach(logLevel => {
@@ -71,8 +76,8 @@ class Chart {
         });
     }
 
-
     createTagElement(logLevel) {
+        if (!logLevel) return null; // Add a check for undefined logLevel
         const tagItem = document.createElement('div');
         tagItem.className = 'tag-item';
         const tagIcon = document.createElement('img');
@@ -101,38 +106,37 @@ class Chart {
         this.updateTooltipChart();
     }
 
-    handleHover(event) {
-        const bars = this.chartContainer.children;
-        const barWidth = bars[0].offsetWidth;
+handleHover(event) {
+    const bar = event.currentTarget; // Get the current bar being hovered
+    const index = Array.from(this.bars).indexOf(bar); // Get the index of the current bar
+    const barWidth = bar.offsetWidth;
+    const barX = bar.getBoundingClientRect().left;
+    const barY = bar.getBoundingClientRect().top;
 
-        Array.from(bars).forEach((bar, index) => {
-            const barX = bar.getBoundingClientRect().left;
-            const barY = bar.getBoundingClientRect().top;
+    if (
+        event.clientX >= barX &&
+        event.clientX <= barX + barWidth &&
+        event.clientY >= barY &&
+        event.clientY <= barY + bar.offsetHeight
+    ) {
+        bar.style.opacity = '0.7';
 
-            if (
-                event.clientX >= barX &&
-                event.clientX <= barX + barWidth &&
-                event.clientY >= barY &&
-                event.clientY <= barY + bar.offsetHeight
-            ) {
-                bar.style.opacity = '0.7';
-
-                const logLevel = LOG_LEVEL_ORDER[index];
-                const tooltipElement = document.getElementById('logSummary');
-                const logData = {
-                    logsInFile: this.parsedLogs.length,
-                    logsFromSelectedTags: this.filteredLogsLength,
-                    tagElement: this.createTagElement(logLevel),
-                    occurrences: this.percentages[logLevel] !== undefined ? this.percentages[logLevel] : 0,
-                    count: this.occurrences[logLevel] !== undefined ? this.occurrences[logLevel] : 0
-                };
-                const tooltip = new Tooltip(tooltipElement);
-                tooltip.updateTooltip(logData);
-            } else {
-                bar.style.opacity = '1';
-            }
-        });
+        const logLevel = LOG_LEVEL_ORDER[index];
+        const tooltipElement = document.getElementById('logSummary');
+        const logData = {
+            logsInFile: this.parsedLogs.length,
+            logsFromSelectedTags: this.filteredLogsLength,
+            tagElement: this.createTagElement(logLevel),
+            occurrences: this.percentages[logLevel] !== undefined ? this.percentages[logLevel] : 0,
+            count: this.occurrences[logLevel] !== undefined ? this.occurrences[logLevel] : 0
+        };
+        const tooltip = new Tooltip(tooltipElement);
+        tooltip.updateTooltip(logData);
+    } else {
+        bar.style.opacity = '1';
     }
+}
+
 
     handleHoverTag(tagElement) {
         const logLevel = tagElement.dataset.tag.toUpperCase();
