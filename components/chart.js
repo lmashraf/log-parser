@@ -36,13 +36,15 @@ class Chart {
             element.addEventListener('mouseenter', () => {
                 this.handleHoverTag(element);
             });
+            element.addEventListener('mouseleave', () => {
+                this.handleMouseLeave();
+            });
         });
 
         this.initialTooltipUpdate(); // Initial tooltip update
     }
 
     createBars() {
-        const maxPercentage = Math.max(...Object.values(this.percentages));
         LOG_LEVEL_ORDER.forEach(logLevel => {
             const bar = document.createElement('div');
             bar.className = 'bar';
@@ -62,8 +64,13 @@ class Chart {
                 event.stopPropagation();
                 this.toggleBar(event, logLevel);
             });
+
+            bar.addEventListener('mouseleave', () => {
+                this.handleMouseLeave();
+            });
         });
     }
+
 
     createTagElement(logLevel) {
         const tagItem = document.createElement('div');
@@ -139,6 +146,12 @@ class Chart {
         };
         const tooltip = new Tooltip(tooltipElement);
         tooltip.updateTooltip(logData);
+    }
+
+    handleMouseLeave() {
+        const tooltipElement = document.getElementById('logSummary');
+        const tooltip = new Tooltip(tooltipElement);
+        tooltip.hideTooltip();
     }
 
     initialTooltipUpdate() {
