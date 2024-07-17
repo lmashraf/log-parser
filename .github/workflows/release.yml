@@ -35,6 +35,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx electron-builder --linux --publish=never
 
+      - name: List dist directory contents for debugging
+        run: ls -la dist
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -59,13 +62,16 @@ jobs:
           name: log-parser-windows-latest
           path: dist/log-parser-*.exe
 
+      - name: List downloaded artifacts for debugging
+        run: ls -la dist
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: v1.0.${{ github.run_number }} # Ensure valid tag format
+          tag_name: v1.0.${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
           body: |
             ## Changes
