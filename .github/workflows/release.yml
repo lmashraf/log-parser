@@ -47,6 +47,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Download Linux artifacts
         uses: actions/download-artifact@v4
         with:
@@ -56,6 +59,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: log-parser-windows-latest
+
+      - name: List directory contents (Linux)
+        if: runner.os == 'Linux'
+        run: ls -R dist
+
+      - name: List directory contents (Windows)
+        if: runner.os == 'Windows'
+        run: dir dist
 
       - name: Create Release
         id: create_release
@@ -72,6 +83,7 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset for Linux
+        if: runner.os == 'Linux'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -82,6 +94,7 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload Release Asset for Windows
+        if: runner.os == 'Windows'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
