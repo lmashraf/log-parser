@@ -39,33 +39,22 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: log-parser-${{ matrix.os }}
-          path: |
-            dist/*.exe
-            dist/*.AppImage
+          path: dist/
 
   release:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download Linux artifacts
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          name: log-parser-ubuntu-latest
-        path: log-parser-ubuntu-latest
+          path: artifacts
 
-      - name: Download Windows artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: log-parser-windows-latest
-        path: log-parser-windows-latest
-
-      - name: List directory contents (Linux)
-        if: runner.os == 'Linux'
-        run: ls -R log-parser-ubuntu-latest
-
-      - name: List directory contents (Windows)
-        if: runner.os == 'Windows'
-        run: dir log-parser-windows-latest
+      - name: List directory contents
+        run: ls -R artifacts
 
       - name: Create Release
         id: create_release
@@ -82,23 +71,21 @@ jobs:
           prerelease: false
 
       - name: Upload Release Asset for Linux
-        if: runner.os == 'Linux'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: log-parser-ubuntu-latest/*.AppImage
+          asset_path: artifacts/log-parser-ubuntu-latest/*.AppImage
           asset_name: log-parser-linux-${{ github.run_number }}.AppImage
           asset_content_type: application/octet-stream
 
       - name: Upload Release Asset for Windows
-        if: runner.os == 'Windows'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: log-parser-windows-latest/*.exe
+          asset_path: artifacts/log-parser-windows-latest/*.exe
           asset_name: log-parser-windows-${{ github.run_number }}.exe
           asset_content_type: application/octet-stream
