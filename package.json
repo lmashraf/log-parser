@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "electron-builder",
+    "package": "electron-builder --dir",
+    "dist": "electron-builder --mac --win --linux"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,20 @@
   "dependencies": {
     "electron": "^31.2.0",
     "electron-reload": "^2.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.14.5"
+  },
+  "build": {
+    "appId": "com.example.log-parser",
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }
