@@ -65,8 +65,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
+          tag_name: v1.0.${{ github.run_number }} # Use a more conventional tag format
+          release_name: Release ${{ github.run_number }}
           body: |
             ## Changes
             - Auto-generated release notes.
