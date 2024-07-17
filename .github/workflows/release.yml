@@ -25,10 +25,14 @@ jobs:
 
       - name: Build LogParser app on Windows
         if: matrix.os == 'windows-latest'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx electron-builder --win --publish=never
 
       - name: Build LogParser app on Linux
         if: matrix.os == 'ubuntu-latest'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx electron-builder --linux --publish=never
 
       - name: Upload artifact
@@ -59,7 +63,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           tag_name: ${{ github.sha }}
           release_name: Release ${{ github.sha }}
@@ -72,7 +76,7 @@ jobs:
       - name: Upload Release Asset for Linux
         uses: actions/upload-release-asset@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/*.AppImage
@@ -82,7 +86,7 @@ jobs:
       - name: Upload Release Asset for Windows
         uses: actions/upload-release-asset@v1
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: dist/*.exe
