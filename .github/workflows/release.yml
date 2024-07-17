@@ -79,7 +79,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/log-parser-*.AppImage
+          asset_path: dist/*.AppImage
           asset_name: log-parser-linux.AppImage
           asset_content_type: application/octet-stream
 
@@ -89,6 +89,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/log-parser-*.exe
+          asset_path: dist/*.exe
           asset_name: log-parser-windows.exe
           asset_content_type: application/octet-stream

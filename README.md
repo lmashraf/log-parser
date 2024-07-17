@@ -12,9 +12,10 @@ Log Parser is an application that allows users to easily upload, parse, filter, 
 - **Export**: Option to export parsed log content.
 
 
-## Installation
+## Screenshots
 
 ### Login Screen
+
 ![login](https://github.com/lmashraf/log-parser/blob/master/assets/logparser_login.png?raw=true)
 
 ### Log Viewer
