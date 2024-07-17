@@ -35,7 +35,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: log-parser-${{ matrix.os }}
-          path: dist/*.{exe,AppImage}
+          path: |
+            dist/*.exe
+            dist/*.AppImage
 
   release:
     needs: build
@@ -45,13 +47,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: log-parser-ubuntu-latest
-          path: ./dist/linux
+          path: dist/*.AppImage
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: log-parser-windows-latest
-          path: ./dist/windows
+          path: dist/*.exe
 
       - name: Create Release
         id: create_release
@@ -73,7 +75,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/log-parser-*.AppImage
+          asset_path: dist/*.AppImage
           asset_name: log-parser-linux.AppImage
           asset_content_type: application/octet-stream
 
@@ -83,6 +85,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/log-parser-*.exe
+          asset_path: dist/*.exe
           asset_name: log-parser-windows.exe
           asset_content_type: application/octet-stream

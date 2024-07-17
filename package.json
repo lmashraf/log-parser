@@ -25,6 +25,9 @@
     },
     "linux": {
       "target": "AppImage"
+    },
+    "directories": {
+      "output": "dist"
     }
   }
 }
