@@ -12,7 +12,7 @@ let mainWindow;
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1200,
-        height: 740,
+        height: 720,
         autoHideMenuBar: true,
         title: "Log Parser",
         thickFrame: true,
@@ -21,6 +21,7 @@ function createWindow() {
         show: true,
         roundedCorners: true,
         fullscreenable: false,
+        resizable: false, 
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
@@ -60,7 +61,7 @@ ipcMain.handle('get-dropdown-options', async () => {
 ipcMain.on('resize-window', (event, { width, height }) => {
     if (mainWindow) {
         const [x, y] = mainWindow.getPosition();
-        mainWindow.setBounds({ x, y: 50, width, height });
+        mainWindow.setBounds({ x, y: 20, width, height });
     }
 });
 

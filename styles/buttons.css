@@ -1,6 +1,6 @@
 /* Button styles */
 .magic-button {
-    background-color: #FFE455;
+    background-color: #FFEB83;
     color: #14213D;
     padding: 10px 20px;
     border: 1px solid #14213D;
@@ -12,6 +12,8 @@
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     margin-left: auto;
+    height: 50px;
+    width: 200px;
 }
 
 .magic-button:hover {
@@ -36,3 +38,4 @@
 .magic-button:active .arrow-icon {
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23FAFAFA" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21l-1.41-1.41L17.17 13H3v-2h14.17l-6.58-6.59L12 3l9 9z"/></svg>');
 }
+
