@@ -1,0 +1,99 @@
+name: Build and Release LogParser App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build LogParser app
+        run: npm run dist
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: log-parser-${{ matrix.os }}
+          path: dist/*.{dmg,exe,AppImage}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: log-parser-ubuntu-latest
+          path: ./dist/linux
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: log-parser-macos-latest
+          path: ./dist/macos
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: log-parser-windows-latest
+          path: ./dist/windows
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
+          body: |
+            ## Changes
+            - Auto-generated release notes.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset for Linux
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/linux/log-parser-*.AppImage
+          asset_name: log-parser-linux.AppImage
+          asset_content_type: application/octet-stream
+
+      - name: Upload Release Asset for macOS
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/macos/log-parser-*.dmg
+          asset_name: log-parser-macos.dmg
+          asset_content_type: application/octet-stream
+
+      - name: Upload Release Asset for Windows
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/windows/log-parser-*.exe
+          asset_name: log-parser-windows.exe
+          asset_content_type: application/octet-stream
