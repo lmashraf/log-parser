@@ -27,7 +27,8 @@ function createWindow() {
         show: true,
         roundedCorners: true,
         fullscreenable: false,
-        resizable: false, 
+        resizable: false,
+        icon: path.join(__dirname, 'assets/logparser_icon.png'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
