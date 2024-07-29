@@ -5,20 +5,12 @@ import { forwardSelectedOptions, forwardParsedLogs } from './renderer/process-da
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const isMainPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
-    const isViewerPage = window.location.pathname.endsWith('viewer.html');
+    const pageType = document.querySelector('meta[name="page"]').content;
 
     console.log('DOMContentLoaded event fired');
 
     try {
-        if (isMainPage) {
-            console.log('Initializing main page');
-            await populateDropdownOptions();
-            addRadioEventListeners();
-            addMagicButtonEventListener();
-        }
-
-        if (isViewerPage) {
+        if (pageType === 'viewer') {
             console.log('Initializing viewer page');
             forwardSelectedOptions();
             forwardParsedLogs();
@@ -36,6 +28,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             }).catch(error => {
                 console.error('Error loading chart.js:', error);
             });
+        } else {
+            console.log('Initializing main page');
+            await populateDropdownOptions();
+            addRadioEventListeners();
+            addMagicButtonEventListener();
         }
     } catch (error) {
         console.error('Error during initialization:', error);
