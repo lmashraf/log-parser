@@ -23,23 +23,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             forwardSelectedOptions();
             forwardParsedLogs();
             addReloadButtonEventListener();
-        }
 
-        // Conditionally load the Chart for the Viewer
-        // TODO: decouple
-        import('./components/chart.js').then(module => {
-            const Chart = module.default;
-            const chartContainerElement = document.getElementById('chartContainer');
-            if (chartContainerElement) {
-                new Chart('chartContainer');
-            } else {
-                console.error('chartContainer element not found.');
-            }
-        }).catch(error => {
-            console.error('Error loading chart.js:', error);
-        });
+            // Conditionally load chart.js only for viewer.html
+            import('./components/chart.js').then(module => {
+                const Chart = module.default;
+                const chartContainerElement = document.getElementById('chartContainer');
+                if (chartContainerElement) {
+                    new Chart('chartContainer');
+                } else {
+                    console.error('chartContainer element not found.');
+                }
+            }).catch(error => {
+                console.error('Error loading chart.js:', error);
+            });
+        }
     } catch (error) {
-        console.error('An error occurred while initialising the application. Please try again.');
-        console.error('Error during initialisation:', error);
+        console.error('Error during initialization:', error);
     }
 });
