@@ -12,9 +12,8 @@ body {
 
 .header-container {
     background-color: #0C1C32;
-    width: 100%;
-    max-width: 1400px;
-    height: 80px;
+    width: 95%;
+    height: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;

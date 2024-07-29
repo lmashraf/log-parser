@@ -6,7 +6,7 @@ import './components/tag.js';
 import './components/chart.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const isMainPage = window.location.pathname.endsWith('main.html') || window.location.pathname === '/';
+    const isMainPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
     const isViewerPage = window.location.pathname.endsWith('viewer.html');
 
     try {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             addReloadButtonEventListener();
         }
     } catch (error) {
+        console.error('An error occurred while initialising the application. Please try again.');
         console.error('Error during initialisation:', error);
-        alert('An error occurred while initialising the application. Please try again.');
     }
 });

@@ -12,7 +12,7 @@ export function forwardSelectedOptions() {
 
 export function forwardParsedLogs() {
     const parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
-    console.log('Forwarding parsed logs to the viewer. Total logs:', parsedLogs.length);
+    console.log('Forwarding parsed logs to the viewer. Total logs:', parsedLogs ? parsedLogs.length : 0);
 
     if (parsedLogs) {
         localStorage.setItem('forwardedLogs', JSON.stringify(parsedLogs));

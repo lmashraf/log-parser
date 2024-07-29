@@ -68,7 +68,7 @@ class DropdownBox {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.custom-select').forEach(select => {
-        if (!select.classList.contains('initialised')) {
+        if (!select.classList.contains('initialised') && select.querySelector('select').options.length > 0) {
             new DropdownBox(select);
             select.classList.add('initialised');
         }

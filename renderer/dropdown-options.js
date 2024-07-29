@@ -8,10 +8,11 @@ export async function populateDropdownOptions() {
     }
 
     try {
-        const options = await window.electron.getDropdownOptions();
+        const response = await fetch('properties/log-formats.json');
+        const options = await response.json();
         console.log('Received dropdown options:', options);
 
-        options.forEach(option => {
+        options.dropdownOptions.forEach(option => {
             const opt = document.createElement('option');
             opt.value = option.value;
             opt.textContent = option.label;
@@ -27,7 +28,7 @@ export async function populateDropdownOptions() {
 
 function initialiseDropdownBox() {
     document.querySelectorAll('.custom-select').forEach(select => {
-        if (!select.classList.contains('initialised')) {
+        if (!select.classList.contains('initialised') && select.querySelector('select').options.length > 0) {
             new DropdownBox(select);
             select.classList.add('initialised');
         }

@@ -1,14 +1,11 @@
 import parseLog from '../parsers/log-parser.js';
 
 function navigateToViewer() {
-    const newHeight = screen.height - 78;
-    window.electron.send('resize-window', { width: 1450, height: newHeight });
     window.location.href = 'viewer.html';
 }
 
-function navigateToMainWindow() {
-    window.electron.send('restore-initial-size');
-    window.location.href = 'main.html'; // Assuming 'main.html' is your main window's HTML file
+function navigateToMain() {
+    window.location.href = 'index.html';
 }
 
 async function fetchLogData(url, formatLabel, source) {
@@ -19,7 +16,7 @@ async function fetchLogData(url, formatLabel, source) {
         setTimeout(navigateToViewer, 100);
     } catch (error) {
         console.error('Error fetching log file:', error);
-        alert('Failed to fetch log file. Please check the URL and try again.');
+        console.error('Failed to fetch log file. Please check the URL and try again.');
     }
 }
 
@@ -30,9 +27,8 @@ function handleFileRead(reader, file, formatLabel) {
     };
     reader.onerror = (error) => {
         console.error('Error reading file:', error);
-        alert('Failed to read log file. Please try again.');
+        console.error('Failed to read log file. Please try again.');
     };
-    reader.readAsText(file);
 }
 
 function isValidUrl(string) {
@@ -55,26 +51,39 @@ export function handleMagicButtonClick() {
         if (isValidUrl(url)) {
             fetchLogData(url, formatLabel, url);
         } else {
-            alert('Invalid URL. Please enter a valid URL.');
+            console.error('Invalid URL. Please enter a valid URL.');
         }
     } else if (loadFrom === 'file') {
         const file = sourceInputElement.files[0];
         if (file) {
             const reader = new FileReader();
-            handleFileRead(reader, file, formatLabel);
+            reader.onload = (event) => {
+                const fileContent = event.target.result;
+                console.log('File content:', fileContent);
+
+                // Normalize line endings
+                const normalizedContent = fileContent.replace(/\r\n/g, '\n');
+                processLogData(normalizedContent, formatLabel, file.name);
+                navigateToViewer();  // Ensure navigation is inside onload
+            };
+            reader.onerror = (error) => {
+                console.error('Error reading file:', error);
+            };
+            reader.readAsText(file);
         } else {
-            alert('No file selected. Please choose a log file.');
+            console.error('No file selected. Please choose a log file.');
         }
     } else if (loadFrom === 'text') {
         const logData = sourceInputElement.value.trim();
         if (logData) {
             processLogData(logData, formatLabel, 'Text Log');
-            setTimeout(navigateToViewer, 100);
+            navigateToViewer();  // Ensure this happens after processing
         } else {
-            alert('Text input cannot be empty.');
+            console.error('Text input cannot be empty.');
         }
     }
 }
+
 
 function processLogData(data, format, source) {
     const logLines = data.split('\n');
@@ -89,7 +98,12 @@ function processLogData(data, format, source) {
 
     localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
     localStorage.setItem('parsedLogs', JSON.stringify(parsedLogs));
+
+    // Log the stored data
+    console.log('Stored selectedOptions:', JSON.parse(localStorage.getItem('selectedOptions')));
+    console.log('Stored parsedLogs:', JSON.parse(localStorage.getItem('parsedLogs')));
 }
+
 
 export function addMagicButtonEventListener() {
     const parseButton = document.getElementById('parseButton');
@@ -102,8 +116,7 @@ export function addReloadButtonEventListener() {
     const reloadButton = document.getElementById('reloadButton');
     if (reloadButton) {
         reloadButton.addEventListener('click', () => {
-            window.electron.send('restore-initial-size');
-            window.location.href = 'main.html';
+            navigateToMain();
         });
     }
 }
