@@ -2,16 +2,10 @@ class DropdownBox {
     constructor(element) {
         this.element = element;
         this.selectElement = this.element.querySelector('select');
-
-        if (!this.selectElement) {
-            console.error('DropdownBox initialization failed: no <select> element found.');
-            return;
-        }
-
         const options = this.selectElement.options;
         this.selected = document.createElement('div');
         this.selected.className = 'select-selected';
-        this.selected.innerHTML = options[this.selectElement.selectedIndex].innerHTML;
+        this.selected.innerHTML = 'Custom Format (User-Defined)';
         this.items = document.createElement('div');
         this.items.className = 'select-items select-hide';
         this.createItems(options);

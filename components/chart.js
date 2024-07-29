@@ -18,12 +18,6 @@ const LOG_LEVEL_ORDER = ['ALERT', 'ERROR', 'INFO', 'NOTICE', 'CRIT', 'DEBUG', 'W
 
 class Chart {
     constructor(containerId) {
-
-        if (!this.chartContainer) {
-            console.error(`Chart initialization failed: No element found with id ${containerId}`);
-            return;
-        }
-
         this.chartContainer = document.getElementById(containerId);
         this.bars = this.chartContainer.getElementsByClassName('bar'); // Select only bar elements
         this.parsedLogs = JSON.parse(localStorage.getItem('parsedLogs'));
